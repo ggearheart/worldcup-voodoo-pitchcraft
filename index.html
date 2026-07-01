@@ -224,6 +224,37 @@
   .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; font-size: 12.5px; color: var(--ink-dim); }
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
   .legend i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+
+  /* ---------- voodoo league table ---------- */
+  .lg-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .allbtn {
+    font: inherit; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--ink); background: var(--bg-card); border: 1px solid var(--line); border-radius: 999px;
+    padding: 7px 15px; cursor: pointer; transition: border-color .15s, background .15s;
+  }
+  .allbtn:hover, .allbtn.active { border-color: var(--gold); }
+  .fstatus { font-size: 13px; color: var(--ink-dim); }
+  .fstatus b { color: var(--ink); }
+  .fstatus button {
+    font: inherit; font-size: 11.5px; margin-left: 8px; color: var(--red);
+    background: none; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; cursor: pointer;
+  }
+  .fstatus button:hover { border-color: var(--red); }
+  .vtable { display: flex; flex-direction: column; gap: 7px; }
+  .vrow {
+    display: grid; grid-template-columns: 26px 132px 1fr 30px; gap: 12px; align-items: center;
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px;
+    cursor: pointer; text-align: left; font: inherit; color: var(--ink);
+    transition: border-color .15s, background .15s, transform .1s;
+  }
+  .vrow:hover { border-color: var(--purple); transform: translateX(2px); }
+  .vrow.active { border-color: var(--gold); background: #1d1740; }
+  .vrow .vflag { width: 24px; height: 16px; border-radius: 2px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,.18); }
+  .vrow .vname { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .vrow .vbar { height: 16px; border-radius: 5px; background: var(--line); overflow: hidden; }
+  .vrow .vbar > i { display: block; height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--purple), var(--gold)); }
+  .vrow .vcount { font-family: var(--serif); font-size: 17px; color: var(--gold); text-align: right; }
+  @media (max-width: 560px) { .vrow { grid-template-columns: 24px 1fr 26px; } .vrow .vbar { display: none; } }
 </style>
 </head>
 <body>
@@ -295,6 +326,37 @@
       </div>
     </div>
   </header>
+
+  <section id="league">
+    <h2>The voodoo league table</h2>
+    <p class="sect-sub">Every nation ranked by the number of distinct stories its flag turns up in — on the pitch or off it. <b>Ghana</b> runs away with it (four); most countries appear just once. <b>Click any flag to filter the timeline below</b> to that nation's stories.</p>
+
+    <div class="lg-controls">
+      <button id="allBtn" class="allbtn active" type="button">All countries</button>
+      <span id="filterStatus" class="fstatus" style="display:none"></span>
+    </div>
+
+    <div class="vtable" id="vtable">
+      <button class="vrow" data-code="ghana" data-name="Ghana" type="button"><svg class="vflag"><use href="#f-ghana"/></svg><span class="vname">Ghana</span><span class="vbar"><i style="width:100%"></i></span><span class="vcount">4</span></button>
+      <button class="vrow" data-code="eng" data-name="England" type="button"><svg class="vflag"><use href="#f-eng"/></svg><span class="vname">England</span><span class="vbar"><i style="width:75%"></i></span><span class="vcount">3</span></button>
+      <button class="vrow" data-code="civ" data-name="Ivory Coast" type="button"><svg class="vflag"><use href="#f-civ"/></svg><span class="vname">Ivory Coast</span><span class="vbar"><i style="width:75%"></i></span><span class="vcount">3</span></button>
+      <button class="vrow" data-code="drc" data-name="DR Congo" type="button"><svg class="vflag"><use href="#f-drc"/></svg><span class="vname">DR Congo</span><span class="vbar"><i style="width:50%"></i></span><span class="vcount">2</span></button>
+      <button class="vrow" data-code="fra" data-name="France" type="button"><svg class="vflag"><use href="#f-fra"/></svg><span class="vname">France</span><span class="vbar"><i style="width:50%"></i></span><span class="vcount">2</span></button>
+      <button class="vrow" data-code="arg" data-name="Argentina" type="button"><svg class="vflag"><use href="#f-arg"/></svg><span class="vname">Argentina</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+      <button class="vrow" data-code="cmr" data-name="Cameroon" type="button"><svg class="vflag"><use href="#f-cmr"/></svg><span class="vname">Cameroon</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+      <button class="vrow" data-code="ecu" data-name="Ecuador" type="button"><svg class="vflag"><use href="#f-ecu"/></svg><span class="vname">Ecuador</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+      <button class="vrow" data-code="egy" data-name="Egypt" type="button"><svg class="vflag"><use href="#f-egy"/></svg><span class="vname">Egypt</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+      <button class="vrow" data-code="haiti" data-name="Haiti" type="button"><svg class="vflag"><use href="#f-haiti"/></svg><span class="vname">Haiti</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+      <button class="vrow" data-code="mali" data-name="Mali" type="button"><svg class="vflag"><use href="#f-mali"/></svg><span class="vname">Mali</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+      <button class="vrow" data-code="nga" data-name="Nigeria" type="button"><svg class="vflag"><use href="#f-nga"/></svg><span class="vname">Nigeria</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+      <button class="vrow" data-code="pan" data-name="Panama" type="button"><svg class="vflag"><use href="#f-pan"/></svg><span class="vname">Panama</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+      <button class="vrow" data-code="por" data-name="Portugal" type="button"><svg class="vflag"><use href="#f-por"/></svg><span class="vname">Portugal</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+      <button class="vrow" data-code="sen" data-name="Senegal" type="button"><svg class="vflag"><use href="#f-sen"/></svg><span class="vname">Senegal</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+      <button class="vrow" data-code="rsa" data-name="South Africa" type="button"><svg class="vflag"><use href="#f-rsa"/></svg><span class="vname">South Africa</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+      <button class="vrow" data-code="tt" data-name="Trinidad &amp; Tobago" type="button"><svg class="vflag"><use href="#f-tt"/></svg><span class="vname">Trinidad &amp; Tobago</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+      <button class="vrow" data-code="zam" data-name="Zambia" type="button"><svg class="vflag"><use href="#f-zam"/></svg><span class="vname">Zambia</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
+    </div>
+  </section>
 
   <section>
     <h2>The timeline</h2>
@@ -611,5 +673,58 @@
   </footer>
 
 </div>
+
+<script>
+(function () {
+  var events = Array.prototype.slice.call(document.querySelectorAll('.timeline .event'));
+  var rows   = Array.prototype.slice.call(document.querySelectorAll('.vrow'));
+  var status = document.getElementById('filterStatus');
+  var allBtn = document.getElementById('allBtn');
+  var active = null;
+
+  // Derive each story's countries from the flags shown in its match line —
+  // this keeps the league-table filter perfectly in sync with the flags.
+  function codesOf(ev) {
+    return Array.prototype.slice.call(ev.querySelectorAll('.match use')).map(function (u) {
+      var h = u.getAttribute('href') || u.getAttribute('xlink:href') || '';
+      return h.replace('#f-', '');
+    });
+  }
+  var evCodes = events.map(codesOf);
+
+  function apply(code) {
+    active = code;
+    events.forEach(function (ev, i) {
+      ev.style.display = (!code || evCodes[i].indexOf(code) !== -1) ? '' : 'none';
+    });
+    rows.forEach(function (r) { r.classList.toggle('active', r.getAttribute('data-code') === code); });
+    allBtn.classList.toggle('active', !code);
+
+    if (code) {
+      var row = rows.filter(function (r) { return r.getAttribute('data-code') === code; })[0];
+      var name = row ? row.getAttribute('data-name') : code;
+      var n = 0;
+      evCodes.forEach(function (c) { if (c.indexOf(code) !== -1) n++; });
+      status.innerHTML = 'Showing <b>' + name + '</b> · ' + n + ' ' + (n === 1 ? 'story' : 'stories') +
+        ' <button type="button" id="clearF">✕ clear</button>';
+      status.style.display = '';
+      document.getElementById('clearF').addEventListener('click', function () { apply(null); });
+    } else {
+      status.style.display = 'none';
+      status.innerHTML = '';
+    }
+  }
+
+  rows.forEach(function (r) {
+    r.addEventListener('click', function () {
+      var c = r.getAttribute('data-code');
+      apply(active === c ? null : c);
+    });
+  });
+  allBtn.addEventListener('click', function () { apply(null); });
+  apply(null);
+})();
+</script>
+
 </body>
 </html>
