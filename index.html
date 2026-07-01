@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pitchcraft — Voodoo at the World Cup, 1974–2026</title>
+<title>Pitchcraft — Voodoo at the World Cup &amp; AFCON, 1974–2026</title>
 <style>
   :root {
     --bg: #0d0a1a;
@@ -33,7 +33,7 @@
   /* ---------- header ---------- */
   header { text-align: center; padding: 64px 0 40px; }
   .kicker {
-    letter-spacing: .35em; text-transform: uppercase; font-size: 12px;
+    letter-spacing: .32em; text-transform: uppercase; font-size: 12px;
     color: var(--gold); margin-bottom: 14px;
   }
   h1 {
@@ -42,7 +42,7 @@
   }
   h1 .accent { color: var(--purple); font-style: italic; }
   .sub {
-    max-width: 620px; margin: 18px auto 0; color: var(--ink-dim); font-size: 17px;
+    max-width: 640px; margin: 18px auto 0; color: var(--ink-dim); font-size: 17px;
   }
 
   /* ---------- stat band ---------- */
@@ -63,7 +63,7 @@
   h2 {
     font-family: var(--serif); font-size: 30px; margin-bottom: 6px;
   }
-  .sect-sub { color: var(--ink-dim); font-size: 15px; margin-bottom: 28px; max-width: 640px; }
+  .sect-sub { color: var(--ink-dim); font-size: 15px; margin-bottom: 28px; max-width: 660px; }
 
   /* ---------- timeline ---------- */
   .timeline { position: relative; padding-left: 34px; }
@@ -88,6 +88,12 @@
   .year {
     font-family: var(--serif); font-size: 26px; color: var(--gold); font-weight: bold;
   }
+  .cup {
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 999px; font-weight: 700;
+  }
+  .cup.wc { background: #20264a; color: #8fa6d6; }
+  .cup.afcon { background: #33291a; color: var(--gold); }
   .tag {
     font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
     padding: 3px 10px; border-radius: 999px; border: 1px solid;
@@ -119,7 +125,7 @@
   }
   .board h3 { font-family: var(--serif); font-size: 21px; margin-bottom: 4px; }
   .board .note { font-size: 13.5px; color: var(--ink-dim); margin-bottom: 18px; }
-  .row { display: grid; grid-template-columns: 150px 1fr 84px; gap: 12px; align-items: center; margin-bottom: 12px; font-size: 14px; }
+  .row { display: grid; grid-template-columns: 168px 1fr 84px; gap: 12px; align-items: center; margin-bottom: 12px; font-size: 14px; }
   .row .who { color: var(--ink-dim); }
   .bar { height: 22px; border-radius: 6px; background: var(--line); overflow: hidden; position: relative; }
   .bar .fill { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 10px; font-size: 11.5px; font-weight: 700; color: #0d0a1a; }
@@ -141,7 +147,7 @@
   .tally .t { font-size: 11.5px; color: var(--ink-dim); margin-top: 4px; }
   @media (max-width: 560px) { .tally { grid-template-columns: repeat(2, 1fr); } }
 
-  /* ---------- bonsam files ---------- */
+  /* ---------- files (two-up cards) ---------- */
   .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   @media (max-width: 640px) { .duo { grid-template-columns: 1fr; } }
   .duo .card h3 { font-family: var(--serif); font-size: 22px; color: var(--gold); margin-bottom: 8px; }
@@ -177,42 +183,51 @@
   footer a { color: var(--blue); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
   .disclaimer { font-size: 12px; color: var(--ink-dim); margin-top: 18px; font-style: italic; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; font-size: 12.5px; color: var(--ink-dim); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header>
-    <div class="kicker">A World Cup Data Story · 1974 – 2026</div>
+    <div class="kicker">A Football Data Story · World Cup &amp; AFCON · 1974 – 2026</div>
     <h1>Pitch<span class="accent">craft</span></h1>
-    <p class="sub">Half a century of voodoo threats, stadium exorcisms, sangoma blessings and post-match
-    witchcraft allegations at the FIFA World Cup — and the strange scoreboard they add up to.</p>
+    <p class="sub">Half a century of voodoo threats, stadium exorcisms, sangoma blessings, unpaid
+    sorcerers and post-match witchcraft allegations across the FIFA World Cup <em>and</em> the Africa
+    Cup of Nations — and the strange scoreboard they add up to.</p>
 
     <div class="stats">
       <div class="stat">
         <div class="num">52</div>
-        <div class="lbl">years since the first documented World Cup voodoo allegation (Haiti, 1974 qualifying)</div>
+        <div class="lbl">years since the first documented voodoo allegation at a major cup (Haiti, 1974)</div>
       </div>
       <div class="stat">
-        <div class="num">W4 D1 L0</div>
+        <div class="num">W6 D1 L0</div>
         <div class="lbl">record of teams <em>accused</em> of voodoo, in the very match the accusation was about</div>
       </div>
       <div class="stat">
-        <div class="num">0</div>
-        <div class="lbl">mentions of witchcraft, juju or sorcery in FIFA's Laws of the Game</div>
+        <div class="num">23</div>
+        <div class="lbl">years Ivory Coast blame an unpaid juju debt for their AFCON title drought (1992–2015)</div>
       </div>
     </div>
   </header>
 
   <section>
     <h2>The timeline</h2>
-    <p class="sect-sub">Every documented case falls into one of three patterns: a <strong style="color:var(--purple)">curse threat</strong> announced before the match, a <strong style="color:var(--blue)">sanctioned ritual</strong> performed openly, or a <strong style="color:var(--red)">post-match allegation</strong> from the losing side.</p>
+    <p class="sect-sub">Every case falls into a handful of patterns: a <strong style="color:var(--purple)">curse threat</strong> announced before kickoff, a <strong style="color:var(--blue)">sanctioned ritual</strong> performed openly, a <strong style="color:var(--red)">post-match allegation</strong> from the losing side — or a <strong style="color:var(--gold)">blessing left unpaid</strong> that curdles into a self-curse.</p>
+
+    <div class="legend">
+      <span><i style="background:#8fa6d6"></i> World Cup</span>
+      <span><i style="background:var(--gold)"></i> Africa Cup of Nations</span>
+    </div>
 
     <div class="timeline">
 
       <div class="event">
         <div class="card">
-          <div class="meta"><span class="year">1974</span><span class="tag allegation">Post-match allegation</span></div>
+          <div class="meta"><span class="year">1974</span><span class="cup wc">World Cup</span><span class="tag allegation">Post-match allegation</span></div>
           <div class="match">Haiti <span class="score">2 – 1</span> Trinidad &amp; Tobago <span style="color:var(--ink-dim); font-weight:400">· qualifying, Dec 1973</span></div>
           <p class="claim"><span class="lead-in">The claim</span>T&amp;T striker Steve David alleged that practitioners of vodou, sponsored by the Duvalier regime, were placed among the crowd to invoke "dark arts": <b>"You can't tell me that game was fair and above board."</b></p>
           <p class="outcome"><span class="lead-in">What happened</span>Haiti won and became the first Caribbean side at a World Cup — then lost 3–1, 7–0 and 4–1 in West Germany. Whatever worked in Port-au-Prince didn't travel.</p>
@@ -220,9 +235,29 @@
         </div>
       </div>
 
+      <div class="event ritual">
+        <div class="card">
+          <div class="meta"><span class="year">1992</span><span class="cup afcon">AFCON</span><span class="tag ritual">Blessing → self-curse</span></div>
+          <div class="match">Ivory Coast <span class="score">0 – 0 (11–10 pens)</span> Ghana <span style="color:var(--ink-dim); font-weight:400">· AFCON final, Dakar</span></div>
+          <p class="claim"><span class="lead-in">The blessing</span>Sports minister René Diby and the federation enlisted the <b>sorcerers of Akradio</b>, a village near Abidjan, for "white magic." The Elephants won their first title in the longest shootout in final history — <b>11–10</b> — and then never paid the wizards.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>Slighted, the sorcerers were said to have turned their magic into a curse. Ivory Coast would not win another AFCON for <b>23 years</b>.</p>
+          <span class="verdict mixed">TITLE WON — DEBT UNPAID, CURSE BORN</span>
+        </div>
+      </div>
+
       <div class="event">
         <div class="card">
-          <div class="meta"><span class="year">2002</span><span class="tag allegation">Prophecy &amp; suspicion</span></div>
+          <div class="meta"><span class="year">2002</span><span class="cup afcon">AFCON</span><span class="tag allegation">Charm on the pitch</span></div>
+          <div class="match">Cameroon <span class="score">3 – 0</span> Mali <span style="color:var(--ink-dim); font-weight:400">· semifinal, Bamako</span></div>
+          <p class="claim"><span class="lead-in">The scene</span>Before kickoff against host Mali, Cameroon's assistant coach — goalkeeping legend <b>Thomas N'Kono</b> — was seized by police and handcuffed on the touchline, accused of sprinkling a charm on the pitch. Cameroon's own sports minister later conceded witchdoctors travelled as team staff.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>Undeterred, Cameroon won <b>3–0</b> and went on to lift the trophy, beating Senegal on penalties — their fourth (and, to date, most recent) AFCON title. CAF fined the federation over the incident.</p>
+          <span class="verdict hit">ACCUSED &amp; HANDCUFFED — WON 3–0 AND THE TOURNAMENT</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="card">
+          <div class="meta"><span class="year">2002</span><span class="cup wc">World Cup</span><span class="tag allegation">Prophecy &amp; suspicion</span></div>
           <div class="match">Senegal <span class="score">1 – 0</span> France <span style="color:var(--ink-dim); font-weight:400">· opening match, Seoul</span></div>
           <p class="claim"><span class="lead-in">The claim</span>A year before the tournament, a Senegalese vendor told France's Emmanuel Petit that the <b>marabouts</b> (spiritual advisors) were powerful — and that France would lose to Senegal <b>exactly 1–0</b>. Petit later mused Senegal "maybe used witchcraft on us."</p>
           <p class="outcome"><span class="lead-in">What happened</span>Papa Bouba Diop scored; the prophesied 1–0 came true. Defending champions France exited winless and goalless. Senegal reached the quarterfinals.</p>
@@ -232,7 +267,7 @@
 
       <div class="event ritual">
         <div class="card">
-          <div class="meta"><span class="year">2006</span><span class="tag ritual">Sanctioned ritual</span></div>
+          <div class="meta"><span class="year">2006</span><span class="cup wc">World Cup</span><span class="tag ritual">Sanctioned ritual</span></div>
           <div class="match">Ecuador &amp; all 12 German venues <span style="color:var(--ink-dim); font-weight:400">· April 2006</span></div>
           <p class="claim"><span class="lead-in">The ritual</span>Tzamarenda Naychapi, a shaman of Ecuador's Shuar people, was allowed to tour <b>all twelve World Cup stadiums</b>, screaming on each pitch to drive out evil spirits and bless the venues.</p>
           <p class="outcome"><span class="lead-in">What happened</span>Ecuador beat Poland and Costa Rica and reached the Round of 16 for the first time — undone only by a David Beckham free kick.</p>
@@ -242,7 +277,7 @@
 
       <div class="event ritual">
         <div class="card">
-          <div class="meta"><span class="year">2010</span><span class="tag ritual">Commissioned ritual</span></div>
+          <div class="meta"><span class="year">2010</span><span class="cup wc">World Cup</span><span class="tag ritual">Commissioned ritual</span></div>
           <div class="match">South Africa <span class="score">2 – 1</span> France <span style="color:var(--ink-dim); font-weight:400">· hosts' final group game</span></div>
           <p class="claim"><span class="lead-in">The ritual</span>Some <b>300 sangomas</b> blessed Soccer City with drums, burned herbs and the slaughter of an ox. Before the France match, sangoma S'bonelo Madelo said the South African FA agreed to pay him <b>R100,000 (~$7,400)</b> for spiritual assistance.</p>
           <p class="outcome"><span class="lead-in">What happened</span>Bafana Bafana beat France — but still became the first host nation ever eliminated in the group stage. France, cursed twice in eight years, imploded entirely.</p>
@@ -250,9 +285,19 @@
         </div>
       </div>
 
+      <div class="event">
+        <div class="card">
+          <div class="meta"><span class="year">2006 &amp; 2012</span><span class="cup afcon">AFCON</span><span class="tag allegation">The curse bites</span></div>
+          <div class="match">Ivory Coast lose two finals <span class="score">on penalties</span> <span style="color:var(--ink-dim); font-weight:400">· vs Egypt '06, vs Zambia '12</span></div>
+          <p class="claim"><span class="lead-in">The pattern</span>A golden generation — Drogba, the Touré brothers, Gervinho — reached two AFCON finals and lost <b>both on penalties</b>: to Egypt in 2006, then to Zambia in 2012. Fans and press pinned it on the unpaid debt of Akradio.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>Drogba himself missed a spot-kick in 2012, and a grieving Zambia side won the shootout. The Elephants' trophy drought stretched past two decades.</p>
+          <span class="verdict miss">CURSE BITES — TWO FINALS, TWO SHOOTOUT DEFEATS</span>
+        </div>
+      </div>
+
       <div class="event threat">
         <div class="card">
-          <div class="meta"><span class="year">2014</span><span class="tag threat">Curse threat</span></div>
+          <div class="meta"><span class="year">2014</span><span class="cup wc">World Cup</span><span class="tag threat">Curse threat</span></div>
           <div class="match">Portugal <span class="score">2 – 1</span> Ghana <span style="color:var(--ink-dim); font-weight:400">· group stage, Brasília</span></div>
           <p class="claim"><span class="lead-in">The claim</span>Ghanaian spiritualist <b>Nana Kwaku Bonsam</b> claimed responsibility for Cristiano Ronaldo's pre-tournament knee injury, saying he built a special spirit called <b>"Kahwiri Kapam"</b> — sourced, he said, from four dogs.</p>
           <p class="outcome"><span class="lead-in">What happened</span>Ronaldo played anyway — and scored the winner against Ghana. Both teams went home at the group stage.</p>
@@ -260,9 +305,19 @@
         </div>
       </div>
 
+      <div class="event ritual">
+        <div class="card">
+          <div class="meta"><span class="year">2015</span><span class="cup afcon">AFCON</span><span class="tag ritual">Debt paid, curse lifted</span></div>
+          <div class="match">Ivory Coast <span class="score">0 – 0 (9–8 pens)</span> Ghana <span style="color:var(--ink-dim); font-weight:400">· AFCON final, Bata</span></div>
+          <p class="claim"><span class="lead-in">The fix</span>Coach <b>Hervé Renard</b> and the federation returned to Akradio, apologised to the sorcerers and finally <b>paid the 1992 debt</b>.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>History rhymed: another goalless final against Ghana, another marathon shootout — this one won <b>9–8</b>, with the two goalkeepers taking the decisive kicks. Twenty-three years after the curse was born, the Elephants were champions again.</p>
+          <span class="verdict hit">DEBT PAID — CURSE LIFTED, TITLE RECLAIMED</span>
+        </div>
+      </div>
+
       <div class="event">
         <div class="card">
-          <div class="meta"><span class="year">2025</span><span class="tag allegation">Post-match allegation</span></div>
+          <div class="meta"><span class="year">2025</span><span class="cup wc">World Cup Q</span><span class="tag allegation">Post-match allegation</span></div>
           <div class="match">DR Congo <span class="score">1 – 1 (4–3 pens)</span> Nigeria <span style="color:var(--ink-dim); font-weight:400">· WC26 playoff final, Rabat</span></div>
           <p class="claim"><span class="lead-in">The claim</span>Nigeria coach Eric Chelle had to be restrained after the shootout: <b>"Throughout the penalty shootout, the guy from DR Congo was doing voodoo."</b> An ex-DRC coach called the accusation "nonsense."</p>
           <p class="outcome"><span class="lead-in">What happened</span>Nigeria's formal FIFA complaint was about player eligibility — not voodoo. DR Congo went on to beat Jamaica 1–0 (Axel Tuanzebe, extra time) and qualified for their first World Cup since 1974 — as Zaire.</p>
@@ -272,7 +327,7 @@
 
       <div class="event threat">
         <div class="card">
-          <div class="meta"><span class="year">2026</span><span class="tag threat">Curse threat</span></div>
+          <div class="meta"><span class="year">2026</span><span class="cup wc">World Cup</span><span class="tag threat">Curse threat</span></div>
           <div class="match">England <span class="score">0 – 0</span> Ghana <span style="color:var(--ink-dim); font-weight:400">· Group L, Boston, June 23</span></div>
           <p class="claim"><span class="lead-in">The claim</span>Bonsam — the same spiritualist from 2014 — announced he was <b>"working on" Harry Kane</b>, "just enough to stop him against my country." Psychic <b>Uri Geller</b> mounted a counter-offensive, vowing to cancel the hex with "good vibrations" by printing photos of both men and marking an X over Bonsam's. After the whistle, thousands of England fans blamed voodoo for the draw.</p>
           <p class="outcome"><span class="lead-in">What happened</span>Kane skied a rebound over an open goal in the 87th minute. Goalless. Ghana matched England everywhere on the pitch — the accusation conveniently ignored that part.</p>
@@ -282,7 +337,7 @@
 
       <div class="event threat">
         <div class="card">
-          <div class="meta"><span class="year">2026</span><span class="tag threat">The un-hexing</span></div>
+          <div class="meta"><span class="year">2026</span><span class="cup wc">World Cup</span><span class="tag threat">The un-hexing</span></div>
           <div class="match">Panama <span class="score">0 – 2</span> England <span style="color:var(--ink-dim); font-weight:400">· Group L, MetLife, June 27</span></div>
           <p class="claim"><span class="lead-in">The claim</span>Bonsam publicly <b>lifted the curse</b> on Instagram, declaring Kane free to score in England's next match.</p>
           <p class="outcome"><span class="lead-in">What happened</span>Four days after being "released," Kane headed in his 11th World Cup goal — <b>breaking Gary Lineker's all-time England World Cup record</b>.</p>
@@ -292,7 +347,7 @@
 
       <div class="event">
         <div class="card">
-          <div class="meta"><span class="year">2026</span><span class="tag threat">Open prophecy</span></div>
+          <div class="meta"><span class="year">2026</span><span class="cup wc">World Cup</span><span class="tag threat">Open prophecy</span></div>
           <div class="match">Argentina <span style="color:var(--ink-dim); font-weight:400">· prophecy issued June 29</span></div>
           <p class="claim"><span class="lead-in">The claim</span>A Ghanaian witch doctor predicted <b>Argentina's elimination</b> from the tournament, sparking controversy in the Argentine press.</p>
           <p class="outcome"><span class="lead-in">What happened</span>Pending. The defending champions are still alive as of July 1.</p>
@@ -302,7 +357,7 @@
 
       <div class="event threat">
         <div class="card">
-          <div class="meta"><span class="year">2026</span><span class="tag rules">Storylines collide</span></div>
+          <div class="meta"><span class="year">2026</span><span class="cup wc">World Cup</span><span class="tag rules">Storylines collide</span></div>
           <div class="match">England <span class="score">2 – 1</span> DR Congo <span style="color:var(--ink-dim); font-weight:400">· Round of 32, Atlanta, July 1</span></div>
           <p class="claim"><span class="lead-in">The setup</span>The tournament's two supernatural storylines met head-on: the freshly <b>un-hexed Harry Kane</b> against the <b>voodoo-accused Leopards</b>. No new spells were reported — just narrative gravity.</p>
           <p class="outcome"><span class="lead-in">What happened</span>DR Congo led from the 7th minute and held it deep into the second half. Then Kane — three matches removed from his curse — headed the equalizer and lashed home the winner four minutes from time: World Cup goals 12 and 13. The Leopards' improbable run, born in a shootout Nigeria blamed on voodoo, ended a game short of the last 16.</p>
@@ -315,17 +370,29 @@
 
   <section>
     <h2>The scoreboard</h2>
-    <p class="sect-sub">If voodoo is being weaponized, the accusers should worry: no team accused of using it has ever lost the match in question.</p>
+    <p class="sect-sub">If voodoo is being weaponized, the accusers should worry: across both the World Cup and AFCON, no team accused of using it has ever lost the match in question.</p>
 
     <div class="board">
       <h3>Teams accused of voodoo — result in the flagged match</h3>
-      <div class="note">Match result for the accused side, in the game the allegation was about.</div>
-      <div class="row"><span class="who">Haiti '74 (Q)</span><div class="bar"><div class="fill w" style="width:100%">WIN 2–1</div></div><span class="res w">W</span></div>
-      <div class="row"><span class="who">Senegal '02</span><div class="bar"><div class="fill w" style="width:100%">WIN 1–0</div></div><span class="res w">W</span></div>
-      <div class="row"><span class="who">S. Africa '10</span><div class="bar"><div class="fill w" style="width:100%">WIN 2–1</div></div><span class="res w">W</span></div>
-      <div class="row"><span class="who">DR Congo '25 (Q)</span><div class="bar"><div class="fill w" style="width:100%">WIN 4–3 pens</div></div><span class="res w">W</span></div>
-      <div class="row"><span class="who">Ghana '26</span><div class="bar"><div class="fill d" style="width:55%">DRAW 0–0</div></div><span class="res d">D</span></div>
-      <div class="note" style="margin-top:14px; margin-bottom:0">DR Congo's run finally ended 2–1 against England on July 1 — but with no voodoo alleged in that match, the flagged-match record stands unbeaten.</div>
+      <div class="note">Match result for the accused side, in the game the allegation was about. Includes World Cup and AFCON.</div>
+      <div class="row"><span class="who">Haiti '74 (WC-Q)</span><div class="bar"><div class="fill w" style="width:100%">WIN 2–1</div></div><span class="res w">W</span></div>
+      <div class="row"><span class="who">Cameroon '02 (AFCON)</span><div class="bar"><div class="fill w" style="width:100%">WIN 3–0</div></div><span class="res w">W</span></div>
+      <div class="row"><span class="who">Senegal '02 (WC)</span><div class="bar"><div class="fill w" style="width:100%">WIN 1–0</div></div><span class="res w">W</span></div>
+      <div class="row"><span class="who">S. Africa '10 (WC)</span><div class="bar"><div class="fill w" style="width:100%">WIN 2–1</div></div><span class="res w">W</span></div>
+      <div class="row"><span class="who">DR Congo '25 (WC-Q)</span><div class="bar"><div class="fill w" style="width:100%">WIN 4–3 pens</div></div><span class="res w">W</span></div>
+      <div class="row"><span class="who">Ghana '26 (WC)</span><div class="bar"><div class="fill d" style="width:55%">DRAW 0–0</div></div><span class="res d">D</span></div>
+      <div class="note" style="margin-top:14px; margin-bottom:0">Six accusations, six unbeaten teams: five wins and a draw. DR Congo's 2026 run finally ended against England on July 1 — but no voodoo was alleged in that match, so the flagged-match record still stands.</div>
+    </div>
+
+    <div class="board">
+      <h3>The Ivory Coast ledger — an unpaid juju debt, in numbers</h3>
+      <div class="note">The Elephants say a broken promise to the sorcerers of Akradio cost them a generation of finals.</div>
+      <div class="tally">
+        <div class="cell total"><div class="n">1992</div><div class="t">BLESSED &amp; WON<br>first title, 11–10 on pens — then didn't pay</div></div>
+        <div class="cell miss"><div class="n">23</div><div class="t">YEARS OF DROUGHT<br>no AFCON title, 1992–2015</div></div>
+        <div class="cell miss"><div class="n">2</div><div class="t">FINALS LOST ON PENS<br>Egypt '06 · Zambia '12</div></div>
+        <div class="cell hit"><div class="n">2015</div><div class="t">DEBT PAID → CHAMPIONS<br>9–8 shootout, curse lifted</div></div>
+      </div>
     </div>
 
     <div class="board">
@@ -375,7 +442,7 @@
       </div>
       <div class="rule">
         <div class="org">CAF</div>
-        <p>The Confederation of African Football explicitly prohibits ritual manipulation during matches, framing sorcery and ceremonial substances on the field as a fair-play violation.</p>
+        <p>After decades of pitch-side incidents — Cameroon's N'Kono handcuffed in 2002 among them — the Confederation of African Football moved to explicitly prohibit ritual manipulation during matches, framing sorcery and ceremonial substances on the field as a fair-play violation.</p>
       </div>
       <div class="rule">
         <div class="org">Rwanda FA</div>
@@ -394,6 +461,10 @@
     <h4>Sources</h4>
     <ul>
       <li><a href="https://allbluedaze.com/2018/03/28/warner-witchcraft-and-the-1974-world-cup-whipping-boys/">All Blue Daze — Witchcraft and the 1974 World Cup (Haiti)</a></li>
+      <li><a href="https://stereotypemag.com/2018/03/14/africa-magic-and-football-ivory-coast/">StereoType Mag — Africa, magic and football: the curse of Ivory Coast</a></li>
+      <li><a href="https://www.dailymaverick.co.za/article/2015-02-09-elephants-never-forget-ivory-coast-lift-the-curse-of-the-afcon-choke/">Daily Maverick — Ivory Coast lift the curse of the AFCON choke (2015)</a></li>
+      <li><a href="https://www.blytheray.com/insights/juju-jars-and-witchdoctors/">BlytheRay — Juju, jars &amp; witchdoctors (Cameroon 2002, N'Kono)</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/2002_African_Cup_of_Nations">Wikipedia — 2002 African Cup of Nations (Cameroon champions)</a></li>
       <li><a href="https://www.vanguardngr.com/2020/06/senegal-may-have-used-witchcraft-on-us-in-2002-says-frances-emmanuel-petit/">Vanguard — Petit: Senegal "maybe used witchcraft" (2002)</a></li>
       <li><a href="https://reuters.screenocean.com/record/867340">Reuters — Shuar shaman Tzamarenda Naychapi cleanses Berlin's Olympiastadion (2006)</a></li>
       <li><a href="https://pri.org/stories/2010-06-15/south-african-muti-used-luck-world-cup">PRI/The World — South African muti at the 2010 World Cup</a></li>
