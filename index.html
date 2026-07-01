@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pitchcraft — Voodoo at the World Cup, 1974–2026</title>
+<style>
+  :root {
+    --bg: #0d0a1a;
+    --bg-card: #171230;
+    --bg-card-alt: #1d1740;
+    --ink: #ece7f7;
+    --ink-dim: #a89fc4;
+    --gold: #f0b429;
+    --purple: #9d6bff;
+    --green: #3ecf8e;
+    --red: #ff5c72;
+    --blue: #5cc3ff;
+    --line: #2e2657;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    background-image: radial-gradient(ellipse 80% 50% at 50% -10%, #2a1b52 0%, transparent 60%);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.55;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- header ---------- */
+  header { text-align: center; padding: 64px 0 40px; }
+  .kicker {
+    letter-spacing: .35em; text-transform: uppercase; font-size: 12px;
+    color: var(--gold); margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--serif); font-size: clamp(40px, 7vw, 68px);
+    line-height: 1.05; letter-spacing: .01em;
+  }
+  h1 .accent { color: var(--purple); font-style: italic; }
+  .sub {
+    max-width: 620px; margin: 18px auto 0; color: var(--ink-dim); font-size: 17px;
+  }
+
+  /* ---------- stat band ---------- */
+  .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    margin: 36px 0 8px;
+  }
+  .stat {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 16px; text-align: center;
+  }
+  .stat .num { font-family: var(--serif); font-size: 40px; color: var(--gold); line-height: 1.1; }
+  .stat .lbl { font-size: 12.5px; color: var(--ink-dim); margin-top: 6px; }
+  @media (max-width: 640px) { .stats { grid-template-columns: 1fr; } }
+
+  /* ---------- section headings ---------- */
+  section { padding: 44px 0 8px; }
+  h2 {
+    font-family: var(--serif); font-size: 30px; margin-bottom: 6px;
+  }
+  .sect-sub { color: var(--ink-dim); font-size: 15px; margin-bottom: 28px; max-width: 640px; }
+
+  /* ---------- timeline ---------- */
+  .timeline { position: relative; padding-left: 34px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 10px; top: 6px; bottom: 6px;
+    width: 2px; background: linear-gradient(var(--purple), var(--gold));
+    opacity: .5;
+  }
+  .event { position: relative; margin-bottom: 30px; }
+  .event::before {
+    content: ''; position: absolute; left: -30px; top: 8px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--gold); box-shadow: 0 0 12px rgba(240,180,41,.7);
+  }
+  .event.ritual::before { background: var(--blue); box-shadow: 0 0 12px rgba(92,195,255,.7); }
+  .event.threat::before { background: var(--purple); box-shadow: 0 0 12px rgba(157,107,255,.7); }
+  .card {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 24px;
+  }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .year {
+    font-family: var(--serif); font-size: 26px; color: var(--gold); font-weight: bold;
+  }
+  .tag {
+    font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 999px; border: 1px solid;
+  }
+  .tag.allegation { color: var(--red); border-color: var(--red); }
+  .tag.threat { color: var(--purple); border-color: var(--purple); }
+  .tag.ritual { color: var(--blue); border-color: var(--blue); }
+  .tag.rules { color: var(--green); border-color: var(--green); }
+  .match { font-weight: 600; font-size: 17px; margin-bottom: 8px; }
+  .match .score { color: var(--gold); }
+  .claim, .outcome { font-size: 15px; margin-bottom: 8px; }
+  .claim b, .outcome b { color: var(--ink); }
+  .claim { color: var(--ink-dim); }
+  .outcome { color: var(--ink-dim); }
+  .lead-in { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 2px; }
+  .verdict {
+    display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700;
+    padding: 5px 14px; border-radius: 8px;
+  }
+  .verdict.hit { background: rgba(62,207,142,.14); color: var(--green); }
+  .verdict.miss { background: rgba(255,92,114,.14); color: var(--red); }
+  .verdict.mixed { background: rgba(240,180,41,.14); color: var(--gold); }
+  .verdict.pending { background: rgba(92,195,255,.14); color: var(--blue); }
+
+  /* ---------- scoreboard ---------- */
+  .board {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 26px; margin-bottom: 18px;
+  }
+  .board h3 { font-family: var(--serif); font-size: 21px; margin-bottom: 4px; }
+  .board .note { font-size: 13.5px; color: var(--ink-dim); margin-bottom: 18px; }
+  .row { display: grid; grid-template-columns: 150px 1fr 84px; gap: 12px; align-items: center; margin-bottom: 12px; font-size: 14px; }
+  .row .who { color: var(--ink-dim); }
+  .bar { height: 22px; border-radius: 6px; background: var(--line); overflow: hidden; position: relative; }
+  .bar .fill { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 10px; font-size: 11.5px; font-weight: 700; color: #0d0a1a; }
+  .fill.w { background: var(--green); }
+  .fill.d { background: var(--gold); }
+  .res { font-weight: 700; text-align: right; }
+  .res.w { color: var(--green); } .res.d { color: var(--gold); }
+  @media (max-width: 560px) { .row { grid-template-columns: 1fr; gap: 4px; } .res { text-align: left; } }
+
+  .tally { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .tally .cell {
+    background: var(--bg-card-alt); border-radius: 10px; padding: 16px 10px; text-align: center;
+  }
+  .tally .n { font-family: var(--serif); font-size: 30px; }
+  .tally .cell.hit .n { color: var(--green); }
+  .tally .cell.miss .n { color: var(--red); }
+  .tally .cell.pending .n { color: var(--blue); }
+  .tally .cell.total .n { color: var(--gold); }
+  .tally .t { font-size: 11.5px; color: var(--ink-dim); margin-top: 4px; }
+  @media (max-width: 560px) { .tally { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ---------- bonsam files ---------- */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px) { .duo { grid-template-columns: 1fr; } }
+  .duo .card h3 { font-family: var(--serif); font-size: 22px; color: var(--gold); margin-bottom: 8px; }
+  .duo ul { list-style: none; }
+  .duo li { font-size: 14.5px; color: var(--ink-dim); padding: 7px 0; border-bottom: 1px dashed var(--line); }
+  .duo li:last-child { border-bottom: none; }
+  .duo li b { color: var(--ink); }
+
+  /* ---------- rulebook ---------- */
+  .rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 700px) { .rules-grid { grid-template-columns: 1fr; } }
+  .rule {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 20px;
+  }
+  .rule .org { font-weight: 700; font-size: 16px; margin-bottom: 6px; color: var(--gold); }
+  .rule p { font-size: 14px; color: var(--ink-dim); }
+
+  /* ---------- next chapter / footer ---------- */
+  .next {
+    margin: 44px 0; padding: 30px; text-align: center; border-radius: 14px;
+    background: linear-gradient(135deg, #241a4d, #14102b);
+    border: 1px solid var(--purple);
+  }
+  .next .lbl { letter-spacing: .3em; text-transform: uppercase; font-size: 11px; color: var(--purple); margin-bottom: 10px; }
+  .next h3 { font-family: var(--serif); font-size: 26px; margin-bottom: 8px; }
+  .next p { color: var(--ink-dim); font-size: 15px; max-width: 560px; margin: 0 auto; }
+
+  footer { border-top: 1px solid var(--line); padding: 30px 0 56px; margin-top: 20px; }
+  footer h4 { font-size: 13px; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 12px; }
+  footer ul { list-style: none; columns: 2; column-gap: 30px; }
+  @media (max-width: 640px) { footer ul { columns: 1; } }
+  footer li { font-size: 12.5px; margin-bottom: 7px; break-inside: avoid; }
+  footer a { color: var(--blue); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .disclaimer { font-size: 12px; color: var(--ink-dim); margin-top: 18px; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">A World Cup Data Story · 1974 – 2026</div>
+    <h1>Pitch<span class="accent">craft</span></h1>
+    <p class="sub">Half a century of voodoo threats, stadium exorcisms, sangoma blessings and post-match
+    witchcraft allegations at the FIFA World Cup — and the strange scoreboard they add up to.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num">52</div>
+        <div class="lbl">years since the first documented World Cup voodoo allegation (Haiti, 1974 qualifying)</div>
+      </div>
+      <div class="stat">
+        <div class="num">W4 D1 L0</div>
+        <div class="lbl">record of teams <em>accused</em> of voodoo, in the very match the accusation was about</div>
+      </div>
+      <div class="stat">
+        <div class="num">0</div>
+        <div class="lbl">mentions of witchcraft, juju or sorcery in FIFA's Laws of the Game</div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <h2>The timeline</h2>
+    <p class="sect-sub">Every documented case falls into one of three patterns: a <strong style="color:var(--purple)">curse threat</strong> announced before the match, a <strong style="color:var(--blue)">sanctioned ritual</strong> performed openly, or a <strong style="color:var(--red)">post-match allegation</strong> from the losing side.</p>
+
+    <div class="timeline">
+
+      <div class="event">
+        <div class="card">
+          <div class="meta"><span class="year">1974</span><span class="tag allegation">Post-match allegation</span></div>
+          <div class="match">Haiti <span class="score">2 – 1</span> Trinidad &amp; Tobago <span style="color:var(--ink-dim); font-weight:400">· qualifying, Dec 1973</span></div>
+          <p class="claim"><span class="lead-in">The claim</span>T&amp;T striker Steve David alleged that practitioners of vodou, sponsored by the Duvalier regime, were placed among the crowd to invoke "dark arts": <b>"You can't tell me that game was fair and above board."</b></p>
+          <p class="outcome"><span class="lead-in">What happened</span>Haiti won and became the first Caribbean side at a World Cup — then lost 3–1, 7–0 and 4–1 in West Germany. Whatever worked in Port-au-Prince didn't travel.</p>
+          <span class="verdict mixed">WON THE MATCH, CURSED THE TOURNAMENT</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="card">
+          <div class="meta"><span class="year">2002</span><span class="tag allegation">Prophecy &amp; suspicion</span></div>
+          <div class="match">Senegal <span class="score">1 – 0</span> France <span style="color:var(--ink-dim); font-weight:400">· opening match, Seoul</span></div>
+          <p class="claim"><span class="lead-in">The claim</span>A year before the tournament, a Senegalese vendor told France's Emmanuel Petit that the <b>marabouts</b> (spiritual advisors) were powerful — and that France would lose to Senegal <b>exactly 1–0</b>. Petit later mused Senegal "maybe used witchcraft on us."</p>
+          <p class="outcome"><span class="lead-in">What happened</span>Papa Bouba Diop scored; the prophesied 1–0 came true. Defending champions France exited winless and goalless. Senegal reached the quarterfinals.</p>
+          <span class="verdict hit">PROPHECY HIT — EXACT SCORELINE</span>
+        </div>
+      </div>
+
+      <div class="event ritual">
+        <div class="card">
+          <div class="meta"><span class="year">2006</span><span class="tag ritual">Sanctioned ritual</span></div>
+          <div class="match">Ecuador &amp; all 12 German venues <span style="color:var(--ink-dim); font-weight:400">· April 2006</span></div>
+          <p class="claim"><span class="lead-in">The ritual</span>Tzamarenda Naychapi, a shaman of Ecuador's Shuar people, was allowed to tour <b>all twelve World Cup stadiums</b>, screaming on each pitch to drive out evil spirits and bless the venues.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>Ecuador beat Poland and Costa Rica and reached the Round of 16 for the first time — undone only by a David Beckham free kick.</p>
+          <span class="verdict mixed">BEST ECUADOR RUN TO DATE, EXORCISM UNDEFEATED UNTIL BECKHAM</span>
+        </div>
+      </div>
+
+      <div class="event ritual">
+        <div class="card">
+          <div class="meta"><span class="year">2010</span><span class="tag ritual">Commissioned ritual</span></div>
+          <div class="match">South Africa <span class="score">2 – 1</span> France <span style="color:var(--ink-dim); font-weight:400">· hosts' final group game</span></div>
+          <p class="claim"><span class="lead-in">The ritual</span>Some <b>300 sangomas</b> blessed Soccer City with drums, burned herbs and the slaughter of an ox. Before the France match, sangoma S'bonelo Madelo said the South African FA agreed to pay him <b>R100,000 (~$7,400)</b> for spiritual assistance.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>Bafana Bafana beat France — but still became the first host nation ever eliminated in the group stage. France, cursed twice in eight years, imploded entirely.</p>
+          <span class="verdict mixed">WON THE BLESSED MATCH, LOST THE TOURNAMENT</span>
+        </div>
+      </div>
+
+      <div class="event threat">
+        <div class="card">
+          <div class="meta"><span class="year">2014</span><span class="tag threat">Curse threat</span></div>
+          <div class="match">Portugal <span class="score">2 – 1</span> Ghana <span style="color:var(--ink-dim); font-weight:400">· group stage, Brasília</span></div>
+          <p class="claim"><span class="lead-in">The claim</span>Ghanaian spiritualist <b>Nana Kwaku Bonsam</b> claimed responsibility for Cristiano Ronaldo's pre-tournament knee injury, saying he built a special spirit called <b>"Kahwiri Kapam"</b> — sourced, he said, from four dogs.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>Ronaldo played anyway — and scored the winner against Ghana. Both teams went home at the group stage.</p>
+          <span class="verdict miss">CURSE MISS — TARGET SCORED THE WINNER</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="card">
+          <div class="meta"><span class="year">2025</span><span class="tag allegation">Post-match allegation</span></div>
+          <div class="match">DR Congo <span class="score">1 – 1 (4–3 pens)</span> Nigeria <span style="color:var(--ink-dim); font-weight:400">· WC26 playoff final, Rabat</span></div>
+          <p class="claim"><span class="lead-in">The claim</span>Nigeria coach Eric Chelle had to be restrained after the shootout: <b>"Throughout the penalty shootout, the guy from DR Congo was doing voodoo."</b> An ex-DRC coach called the accusation "nonsense."</p>
+          <p class="outcome"><span class="lead-in">What happened</span>Nigeria's formal FIFA complaint was about player eligibility — not voodoo. DR Congo went on to beat Jamaica 1–0 (Axel Tuanzebe, extra time) and qualified for their first World Cup since 1974 — as Zaire.</p>
+          <span class="verdict hit">ACCUSED TEAM WENT TO THE WORLD CUP</span>
+        </div>
+      </div>
+
+      <div class="event threat">
+        <div class="card">
+          <div class="meta"><span class="year">2026</span><span class="tag threat">Curse threat</span></div>
+          <div class="match">England <span class="score">0 – 0</span> Ghana <span style="color:var(--ink-dim); font-weight:400">· Group L, Boston, June 23</span></div>
+          <p class="claim"><span class="lead-in">The claim</span>Bonsam — the same spiritualist from 2014 — announced he was <b>"working on" Harry Kane</b>, "just enough to stop him against my country." Psychic <b>Uri Geller</b> mounted a counter-offensive, vowing to cancel the hex with "good vibrations" by printing photos of both men and marking an X over Bonsam's. After the whistle, thousands of England fans blamed voodoo for the draw.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>Kane skied a rebound over an open goal in the 87th minute. Goalless. Ghana matched England everywhere on the pitch — the accusation conveniently ignored that part.</p>
+          <span class="verdict hit">HEX "HIT" — KANE GOALLESS, GELLER OVERRULED</span>
+        </div>
+      </div>
+
+      <div class="event threat">
+        <div class="card">
+          <div class="meta"><span class="year">2026</span><span class="tag threat">The un-hexing</span></div>
+          <div class="match">Panama <span class="score">0 – 2</span> England <span style="color:var(--ink-dim); font-weight:400">· Group L, MetLife, June 27</span></div>
+          <p class="claim"><span class="lead-in">The claim</span>Bonsam publicly <b>lifted the curse</b> on Instagram, declaring Kane free to score in England's next match.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>Four days after being "released," Kane headed in his 11th World Cup goal — <b>breaking Gary Lineker's all-time England World Cup record</b>.</p>
+          <span class="verdict hit">UN-HEX "HIT" — RECORD BROKEN ON CUE</span>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="card">
+          <div class="meta"><span class="year">2026</span><span class="tag threat">Open prophecy</span></div>
+          <div class="match">Argentina <span style="color:var(--ink-dim); font-weight:400">· prophecy issued June 29</span></div>
+          <p class="claim"><span class="lead-in">The claim</span>A Ghanaian witch doctor predicted <b>Argentina's elimination</b> from the tournament, sparking controversy in the Argentine press.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>Pending. The defending champions are still alive as of July 1.</p>
+          <span class="verdict pending">PENDING</span>
+        </div>
+      </div>
+
+      <div class="event threat">
+        <div class="card">
+          <div class="meta"><span class="year">2026</span><span class="tag rules">Storylines collide</span></div>
+          <div class="match">England <span class="score">2 – 1</span> DR Congo <span style="color:var(--ink-dim); font-weight:400">· Round of 32, Atlanta, July 1</span></div>
+          <p class="claim"><span class="lead-in">The setup</span>The tournament's two supernatural storylines met head-on: the freshly <b>un-hexed Harry Kane</b> against the <b>voodoo-accused Leopards</b>. No new spells were reported — just narrative gravity.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>DR Congo led from the 7th minute and held it deep into the second half. Then Kane — three matches removed from his curse — headed the equalizer and lashed home the winner four minutes from time: World Cup goals 12 and 13. The Leopards' improbable run, born in a shootout Nigeria blamed on voodoo, ended a game short of the last 16.</p>
+          <span class="verdict hit">UN-HEX STILL RUNNING — KANE 3 GOALS IN 2 GAMES SINCE RELEASE</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>The scoreboard</h2>
+    <p class="sect-sub">If voodoo is being weaponized, the accusers should worry: no team accused of using it has ever lost the match in question.</p>
+
+    <div class="board">
+      <h3>Teams accused of voodoo — result in the flagged match</h3>
+      <div class="note">Match result for the accused side, in the game the allegation was about.</div>
+      <div class="row"><span class="who">Haiti '74 (Q)</span><div class="bar"><div class="fill w" style="width:100%">WIN 2–1</div></div><span class="res w">W</span></div>
+      <div class="row"><span class="who">Senegal '02</span><div class="bar"><div class="fill w" style="width:100%">WIN 1–0</div></div><span class="res w">W</span></div>
+      <div class="row"><span class="who">S. Africa '10</span><div class="bar"><div class="fill w" style="width:100%">WIN 2–1</div></div><span class="res w">W</span></div>
+      <div class="row"><span class="who">DR Congo '25 (Q)</span><div class="bar"><div class="fill w" style="width:100%">WIN 4–3 pens</div></div><span class="res w">W</span></div>
+      <div class="row"><span class="who">Ghana '26</span><div class="bar"><div class="fill d" style="width:55%">DRAW 0–0</div></div><span class="res d">D</span></div>
+      <div class="note" style="margin-top:14px; margin-bottom:0">DR Congo's run finally ended 2–1 against England on July 1 — but with no voodoo alleged in that match, the flagged-match record stands unbeaten.</div>
+    </div>
+
+    <div class="board">
+      <h3>Announced curses &amp; prophecies — did the claimed outcome happen?</h3>
+      <div class="note">Counting only claims made <em>before</em> the match, where the practitioner named a specific outcome.</div>
+      <div class="tally">
+        <div class="cell hit"><div class="n">3</div><div class="t">HITS<br>'02 marabout scoreline · '26 Kane hex · '26 un-hex</div></div>
+        <div class="cell miss"><div class="n">1</div><div class="t">MISSES<br>'14 Ronaldo curse (scored winner)</div></div>
+        <div class="cell pending"><div class="n">1</div><div class="t">PENDING<br>'26 Argentina elimination</div></div>
+        <div class="cell total"><div class="n">75%</div><div class="t">HIT RATE<br>of settled pre-match claims</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The Bonsam files</h2>
+    <p class="sect-sub">One man connects 2014 to 2026: Nana Kwaku Bonsam, self-styled "Great Authentic Man," operator of three shrines in Accra — and the only spiritualist with two World Cup superstar curses on his record.</p>
+    <div class="duo">
+      <div class="card">
+        <h3>2014 · Target: Ronaldo</h3>
+        <ul>
+          <li><b>Method:</b> "Kahwiri Kapam" spirit, made with four dogs</li>
+          <li><b>Claim:</b> caused Ronaldo's knee injury before Ghana match</li>
+          <li><b>Result:</b> Ronaldo played &amp; scored the winner vs Ghana</li>
+          <li><b>Verdict:</b> <span style="color:var(--red); font-weight:700">MISS</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>2026 · Target: Kane</h3>
+        <ul>
+          <li><b>Method:</b> announced he was "working on" Kane pre-match</li>
+          <li><b>Claim:</b> Kane wouldn't shine vs Ghana; later lifted the hex</li>
+          <li><b>Result:</b> Kane goalless vs Ghana, then 3 goals in 2 games once "released" — including Lineker's record</li>
+          <li><b>Verdict:</b> <span style="color:var(--green); font-weight:700">HIT ×2</span> (by his own scoring system)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The rulebook</h2>
+    <p class="sect-sub">Football's governing bodies take this seriously enough to legislate — unevenly.</p>
+    <div class="rules-grid">
+      <div class="rule">
+        <div class="org">FIFA</div>
+        <p>The Laws of the Game never mention witchcraft, juju or sorcery. Officials can still penalize associated behavior (objects on the pitch, conduct violations) under existing rules.</p>
+      </div>
+      <div class="rule">
+        <div class="org">CAF</div>
+        <p>The Confederation of African Football explicitly prohibits ritual manipulation during matches, framing sorcery and ceremonial substances on the field as a fair-play violation.</p>
+      </div>
+      <div class="rule">
+        <div class="org">Rwanda FA</div>
+        <p>Adopted explicit anti-witchcraft measures after a league player was filmed digging up an alleged charm near an opponent's goal — the incident that pushed a federation to write magic into its rulebook.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="next">
+    <div class="lbl">Next chapter</div>
+    <h3>England vs Mexico · Round of 16 · Mexico City</h3>
+    <p>The un-hexed Kane rides a three-goals-in-two-games streak into Estadio Azteca on July 5 — while the witch doctor's prophecy of Argentina's elimination remains open. The story isn't over.</p>
+  </div>
+
+  <footer>
+    <h4>Sources</h4>
+    <ul>
+      <li><a href="https://allbluedaze.com/2018/03/28/warner-witchcraft-and-the-1974-world-cup-whipping-boys/">All Blue Daze — Witchcraft and the 1974 World Cup (Haiti)</a></li>
+      <li><a href="https://www.vanguardngr.com/2020/06/senegal-may-have-used-witchcraft-on-us-in-2002-says-frances-emmanuel-petit/">Vanguard — Petit: Senegal "maybe used witchcraft" (2002)</a></li>
+      <li><a href="https://reuters.screenocean.com/record/867340">Reuters — Shuar shaman Tzamarenda Naychapi cleanses Berlin's Olympiastadion (2006)</a></li>
+      <li><a href="https://pri.org/stories/2010-06-15/south-african-muti-used-luck-world-cup">PRI/The World — South African muti at the 2010 World Cup</a></li>
+      <li><a href="https://www.vice.com/en/article/black-bags-blood-and-pungent-paste-south-african-soccers-muti-rituals/">VICE — Muti rituals in South African soccer</a></li>
+      <li><a href="https://gulfnews.com/sport/football/world-cup/ghana-witch-doctor-behind-ronaldo-curse-claims-and-harry-kanes-goalless-night-who-is-nana-kwaku-bonsam-1.500585004">Gulf News — Who is Nana Kwaku Bonsam? (2014 &amp; 2026)</a></li>
+      <li><a href="https://www.cafonline.com/fifa-world-cup/news/dr-congo-edge-nigeria-on-penalties-to-reach-inter-confederation-play-off/">CAF — DR Congo edge Nigeria on penalties (Nov 2025)</a></li>
+      <li><a href="https://www.seneweb.com/en/news/Sport/2026-world-cup-playoffs-witchcraft-accusations-surface-in-dr-congo-vs-nigeria-match_n_474582.html">Seneweb — Witchcraft accusations, DR Congo vs Nigeria</a></li>
+      <li><a href="https://www.aljazeera.com/sports/2026/3/31/dr-congo-beat-jamaica-in-world-cup-intercontinental-qualifying-finals">Al Jazeera — DR Congo beat Jamaica to qualify (Mar 2026)</a></li>
+      <li><a href="https://www.modernghana.com/news/1505176/world-cup-2026-england-football-fans-blame-voodoo.html">Modern Ghana — England fans blame voodoo after Ghana draw</a></li>
+      <li><a href="https://www.skysports.com/football/news/11065/13554961/world-cup-2026-england-0-0-ghana-harry-kane-goes-closest-late-on-as-three-lions-frustrated-in-boston">Sky Sports — England 0–0 Ghana match report</a></li>
+      <li><a href="https://wildhunt.org/2026/06/world-cup-witchcraft-update-harry-kane-officially-unhexed.html">The Wild Hunt — Harry Kane officially unhexed</a></li>
+      <li><a href="https://www.espn.com/soccer/story/_/id/49190714/harry-kane-england-leading-goalscorer-world-cup-70-goals-lineker-panama">ESPN — Kane breaks England World Cup record vs Panama</a></li>
+      <li><a href="https://www.goal.com/en/lists/harry-kane-curse-uri-geller-ghana-voodoo-england-world-cup-witch-doctor/blt9b42f4546379855d">Goal — Uri Geller vows to cancel the Kane curse</a></li>
+      <li><a href="https://www.espn.co.uk/football/story/_/id/49236312/england-congo-dr-live-world-cup-2026-latest-updates-commentary-score-result">ESPN — England 2–1 DR Congo, Round of 32 (July 1)</a></li>
+      <li><a href="https://www.beinsports.com/en-us/soccer/fifa-world-cup-2026/articles/ghana-s-witch-doctor-makes-unsettling-prediction-for-argentina-at-the-2026-world-cup-claims-the-albiceleste-will-be-eliminated-2026-06-29">beIN Sports — Witch doctor predicts Argentina's elimination</a></li>
+      <li><a href="https://blog.wego.com/witchcraft-at-the-world-cup/">Wego — Witchcraft and magic at the World Cup 2026</a></li>
+    </ul>
+    <p class="disclaimer">Correlation is not conjuration. This infographic reports claims and coincidences as covered in the press; no supernatural causation is endorsed. "Hit rate" reflects whether a claimed outcome occurred, not why.</p>
+  </footer>
+
+</div>
+</body>
+</html>
