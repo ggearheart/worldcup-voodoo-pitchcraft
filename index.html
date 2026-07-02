@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pitchcraft — Voodoo at the World Cup &amp; AFCON, 1974–2026</title>
+<title>Pitchcraft — Voodoo, Juju &amp; Witchcraft in Football, 1974–2026</title>
 <link rel="icon" type="image/svg+xml" href="doll.svg">
 <style>
   :root {
@@ -34,7 +34,7 @@
   /* ---------- header ---------- */
   header { text-align: center; padding: 64px 0 40px; }
   .kicker {
-    letter-spacing: .32em; text-transform: uppercase; font-size: 12px;
+    letter-spacing: .3em; text-transform: uppercase; font-size: 12px;
     color: var(--gold); margin-bottom: 14px;
   }
   h1 {
@@ -43,7 +43,7 @@
   }
   h1 .accent { color: var(--purple); font-style: italic; }
   .sub {
-    max-width: 640px; margin: 18px auto 0; color: var(--ink-dim); font-size: 17px;
+    max-width: 660px; margin: 18px auto 0; color: var(--ink-dim); font-size: 17px;
   }
 
   /* ---------- stat band ---------- */
@@ -73,6 +73,48 @@
   }
   .flag.sm { width: 18px; height: 12px; vertical-align: -1px; }
 
+  /* ---------- voodoo league table ---------- */
+  .modeswitch {
+    display: inline-flex; background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: 999px; padding: 3px; gap: 3px; margin-bottom: 10px;
+  }
+  .modebtn {
+    font: inherit; font-size: 12.5px; font-weight: 700; letter-spacing: .03em;
+    color: var(--ink-dim); background: none; border: none; border-radius: 999px;
+    padding: 7px 16px; cursor: pointer; transition: background .15s, color .15s;
+  }
+  .modebtn.active { background: linear-gradient(90deg, var(--purple), var(--gold)); color: #0d0a1a; }
+  .modehint { font-size: 13px; color: var(--ink-dim); margin-bottom: 18px; max-width: 640px; }
+  .lg-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .allbtn {
+    font: inherit; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--ink); background: var(--bg-card); border: 1px solid var(--line); border-radius: 999px;
+    padding: 7px 15px; cursor: pointer; transition: border-color .15s, background .15s;
+  }
+  .allbtn:hover, .allbtn.active { border-color: var(--gold); }
+  .fstatus { font-size: 13px; color: var(--ink-dim); }
+  .fstatus b { color: var(--ink); }
+  .fstatus button {
+    font: inherit; font-size: 11.5px; margin-left: 8px; color: var(--red);
+    background: none; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; cursor: pointer;
+  }
+  .fstatus button:hover { border-color: var(--red); }
+  .vtable { display: flex; flex-direction: column; gap: 7px; }
+  .vrow {
+    display: grid; grid-template-columns: 26px 132px 1fr 30px; gap: 12px; align-items: center;
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px;
+    cursor: pointer; text-align: left; font: inherit; color: var(--ink);
+    transition: border-color .15s, background .15s, transform .1s;
+  }
+  .vrow:hover { border-color: var(--purple); transform: translateX(2px); }
+  .vrow.active { border-color: var(--gold); background: #1d1740; }
+  .vrow .vflag { width: 24px; height: 16px; border-radius: 2px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,.18); }
+  .vrow .vname { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .vrow .vbar { height: 16px; border-radius: 5px; background: var(--line); overflow: hidden; }
+  .vrow .vbar > i { display: block; height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--purple), var(--gold)); }
+  .vrow .vcount { font-family: var(--serif); font-size: 17px; color: var(--gold); text-align: right; }
+  @media (max-width: 560px) { .vrow { grid-template-columns: 24px 1fr 26px; } .vrow .vbar { display: none; } }
+
   /* ---------- timeline ---------- */
   .timeline { position: relative; padding-left: 34px; }
   .timeline::before {
@@ -93,7 +135,6 @@
     background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
     padding: 22px 24px;
   }
-  /* flag-colour accent stripe (country of the story) */
   .event .card { padding-left: 30px; }
   .event .card::before {
     content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
@@ -109,6 +150,8 @@
   .flag-drc   { --flag: linear-gradient(#00a2e8 0 55%, #f7d618 55% 72%, #ce1021 72% 100%); }
   .flag-eng   { --flag: linear-gradient(#f5f5f5 0 38%, #ce1124 38% 62%, #f5f5f5 62% 100%); }
   .flag-arg   { --flag: linear-gradient(#74acdf 0 40%, #f6b40e 40% 60%, #74acdf 60% 100%); }
+  .flag-zw    { --flag: linear-gradient(#006400 0 25%, #ffd200 25% 45%, #d40000 45% 55%, #000 55% 75%, #006400 75% 100%); }
+  .flag-rw    { --flag: linear-gradient(#00a1de 0 50%, #fad201 50% 75%, #20603d 75% 100%); }
 
   .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 10px; }
   .year {
@@ -120,6 +163,8 @@
   }
   .cup.wc { background: #20264a; color: #8fa6d6; }
   .cup.afcon { background: #33291a; color: var(--gold); }
+  .cup.club { background: #12321f; color: #5fd39a; }
+  .cup.league { background: #2a1c3a; color: #c39bff; }
   .tag {
     font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
     padding: 3px 10px; border-radius: 999px; border: 1px solid;
@@ -145,7 +190,6 @@
   .verdict.miss { background: rgba(255,92,114,.14); color: var(--red); }
   .verdict.mixed { background: rgba(240,180,41,.14); color: var(--gold); }
   .verdict.pending { background: rgba(92,195,255,.14); color: var(--blue); }
-  /* ---------- learn more (voodoo-doll link) ---------- */
   .learn {
     display: inline-flex; align-items: center; gap: 7px;
     font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
@@ -195,8 +239,7 @@
   .duo li b { color: var(--ink); }
 
   /* ---------- rulebook ---------- */
-  .rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  @media (max-width: 700px) { .rules-grid { grid-template-columns: 1fr; } }
+  .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
   .rule {
     background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 20px;
   }
@@ -224,37 +267,6 @@
   .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; font-size: 12.5px; color: var(--ink-dim); }
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
   .legend i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
-
-  /* ---------- voodoo league table ---------- */
-  .lg-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 16px; }
-  .allbtn {
-    font: inherit; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-    color: var(--ink); background: var(--bg-card); border: 1px solid var(--line); border-radius: 999px;
-    padding: 7px 15px; cursor: pointer; transition: border-color .15s, background .15s;
-  }
-  .allbtn:hover, .allbtn.active { border-color: var(--gold); }
-  .fstatus { font-size: 13px; color: var(--ink-dim); }
-  .fstatus b { color: var(--ink); }
-  .fstatus button {
-    font: inherit; font-size: 11.5px; margin-left: 8px; color: var(--red);
-    background: none; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; cursor: pointer;
-  }
-  .fstatus button:hover { border-color: var(--red); }
-  .vtable { display: flex; flex-direction: column; gap: 7px; }
-  .vrow {
-    display: grid; grid-template-columns: 26px 132px 1fr 30px; gap: 12px; align-items: center;
-    background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px;
-    cursor: pointer; text-align: left; font: inherit; color: var(--ink);
-    transition: border-color .15s, background .15s, transform .1s;
-  }
-  .vrow:hover { border-color: var(--purple); transform: translateX(2px); }
-  .vrow.active { border-color: var(--gold); background: #1d1740; }
-  .vrow .vflag { width: 24px; height: 16px; border-radius: 2px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,.18); }
-  .vrow .vname { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .vrow .vbar { height: 16px; border-radius: 5px; background: var(--line); overflow: hidden; }
-  .vrow .vbar > i { display: block; height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--purple), var(--gold)); }
-  .vrow .vcount { font-family: var(--serif); font-size: 17px; color: var(--gold); text-align: right; }
-  @media (max-width: 560px) { .vrow { grid-template-columns: 24px 1fr 26px; } .vrow .vbar { display: none; } }
 </style>
 </head>
 <body>
@@ -299,22 +311,24 @@
     <symbol id="f-pan" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><rect x="15" width="15" height="10" fill="#d21034"/><rect y="10" width="15" height="10" fill="#005293"/><use href="#star5" transform="translate(7.5 5) scale(2.2)" fill="#005293"/><use href="#star5" transform="translate(22.5 15) scale(2.2)" fill="#d21034"/></symbol>
     <symbol id="f-arg" viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#74acdf"/><rect y="6.67" width="30" height="6.66" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#74acdf"/><circle cx="15" cy="10" r="1.9" fill="#f6b40e"/></symbol>
     <symbol id="f-nga" viewBox="0 0 30 20"><rect width="10" height="20" fill="#008751"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#008751"/></symbol>
+    <symbol id="f-zw" viewBox="0 0 30 20"><rect width="30" height="20" fill="#006400"/><rect y="2.857" width="30" height="2.857" fill="#ffd200"/><rect y="5.714" width="30" height="2.857" fill="#d40000"/><rect y="8.571" width="30" height="2.858" fill="#000"/><rect y="11.429" width="30" height="2.857" fill="#d40000"/><rect y="14.286" width="30" height="2.857" fill="#ffd200"/><path d="M0 0 L11 10 L0 20 Z" fill="#fff"/><use href="#star5" transform="translate(3.4 10) scale(2)" fill="#d40000"/></symbol>
+    <symbol id="f-rw" viewBox="0 0 30 20"><rect width="30" height="10" fill="#00a1de"/><rect y="10" width="30" height="5" fill="#fad201"/><rect y="15" width="30" height="5" fill="#20603d"/><circle cx="23" cy="5" r="2.2" fill="#e5be01"/></symbol>
   </defs>
 </svg>
 
 <div class="wrap">
 
   <header>
-    <div class="kicker">A Football Data Story · World Cup &amp; AFCON · 1974 – 2026</div>
+    <div class="kicker">A Football Data Story · Voodoo, Juju &amp; the Beautiful Game · 1974 – 2026</div>
     <h1>Pitch<span class="accent">craft</span></h1>
-    <p class="sub">Half a century of voodoo threats, stadium exorcisms, sangoma blessings, unpaid
-    sorcerers and post-match witchcraft allegations across the FIFA World Cup <em>and</em> the Africa
-    Cup of Nations — and the strange scoreboard they add up to.</p>
+    <p class="sub">From the World Cup and the Africa Cup of Nations to club and league pitches across
+    Africa: half a century of voodoo threats, stadium exorcisms, sangoma blessings, unpaid sorcerers
+    and post-match witchcraft allegations — and the strange scoreboard they add up to.</p>
 
     <div class="stats">
       <div class="stat">
         <div class="num">52</div>
-        <div class="lbl">years since the first documented voodoo allegation at a major cup (Haiti, 1974)</div>
+        <div class="lbl">years since the first documented football voodoo allegation (Haiti, 1974)</div>
       </div>
       <div class="stat">
         <div class="num">W6 D1 L0</div>
@@ -329,33 +343,21 @@
 
   <section id="league">
     <h2>The voodoo league table</h2>
-    <p class="sect-sub">Every nation ranked by the number of distinct stories its flag turns up in — on the pitch or off it. <b>Ghana</b> runs away with it (four); most countries appear just once. <b>Click any flag to filter the timeline below</b> to that nation's stories.</p>
+    <p class="sect-sub">Which countries have the most — and least — voodoo swirling around their football? Ranked by the number of distinct stories each turns up in. <b>Click any flag to filter the timeline below</b> to that nation.</p>
+
+    <div class="modeswitch">
+      <button class="modebtn active" data-mode="inv" type="button">Involved in</button>
+      <button class="modebtn" data-mode="cast" type="button">Cast the spell</button>
+    </div>
+    <p id="modeHint" class="modehint"></p>
 
     <div class="lg-controls">
       <button id="allBtn" class="allbtn active" type="button">All countries</button>
       <span id="filterStatus" class="fstatus" style="display:none"></span>
     </div>
 
-    <div class="vtable" id="vtable">
-      <button class="vrow" data-code="ghana" data-name="Ghana" type="button"><svg class="vflag"><use href="#f-ghana"/></svg><span class="vname">Ghana</span><span class="vbar"><i style="width:100%"></i></span><span class="vcount">4</span></button>
-      <button class="vrow" data-code="eng" data-name="England" type="button"><svg class="vflag"><use href="#f-eng"/></svg><span class="vname">England</span><span class="vbar"><i style="width:75%"></i></span><span class="vcount">3</span></button>
-      <button class="vrow" data-code="civ" data-name="Ivory Coast" type="button"><svg class="vflag"><use href="#f-civ"/></svg><span class="vname">Ivory Coast</span><span class="vbar"><i style="width:75%"></i></span><span class="vcount">3</span></button>
-      <button class="vrow" data-code="drc" data-name="DR Congo" type="button"><svg class="vflag"><use href="#f-drc"/></svg><span class="vname">DR Congo</span><span class="vbar"><i style="width:50%"></i></span><span class="vcount">2</span></button>
-      <button class="vrow" data-code="fra" data-name="France" type="button"><svg class="vflag"><use href="#f-fra"/></svg><span class="vname">France</span><span class="vbar"><i style="width:50%"></i></span><span class="vcount">2</span></button>
-      <button class="vrow" data-code="arg" data-name="Argentina" type="button"><svg class="vflag"><use href="#f-arg"/></svg><span class="vname">Argentina</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-      <button class="vrow" data-code="cmr" data-name="Cameroon" type="button"><svg class="vflag"><use href="#f-cmr"/></svg><span class="vname">Cameroon</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-      <button class="vrow" data-code="ecu" data-name="Ecuador" type="button"><svg class="vflag"><use href="#f-ecu"/></svg><span class="vname">Ecuador</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-      <button class="vrow" data-code="egy" data-name="Egypt" type="button"><svg class="vflag"><use href="#f-egy"/></svg><span class="vname">Egypt</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-      <button class="vrow" data-code="haiti" data-name="Haiti" type="button"><svg class="vflag"><use href="#f-haiti"/></svg><span class="vname">Haiti</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-      <button class="vrow" data-code="mali" data-name="Mali" type="button"><svg class="vflag"><use href="#f-mali"/></svg><span class="vname">Mali</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-      <button class="vrow" data-code="nga" data-name="Nigeria" type="button"><svg class="vflag"><use href="#f-nga"/></svg><span class="vname">Nigeria</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-      <button class="vrow" data-code="pan" data-name="Panama" type="button"><svg class="vflag"><use href="#f-pan"/></svg><span class="vname">Panama</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-      <button class="vrow" data-code="por" data-name="Portugal" type="button"><svg class="vflag"><use href="#f-por"/></svg><span class="vname">Portugal</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-      <button class="vrow" data-code="sen" data-name="Senegal" type="button"><svg class="vflag"><use href="#f-sen"/></svg><span class="vname">Senegal</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-      <button class="vrow" data-code="rsa" data-name="South Africa" type="button"><svg class="vflag"><use href="#f-rsa"/></svg><span class="vname">South Africa</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-      <button class="vrow" data-code="tt" data-name="Trinidad &amp; Tobago" type="button"><svg class="vflag"><use href="#f-tt"/></svg><span class="vname">Trinidad &amp; Tobago</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-      <button class="vrow" data-code="zam" data-name="Zambia" type="button"><svg class="vflag"><use href="#f-zam"/></svg><span class="vname">Zambia</span><span class="vbar"><i style="width:25%"></i></span><span class="vcount">1</span></button>
-    </div>
+    <div class="vtable" id="vtable"></div>
+    <noscript><p class="sect-sub" style="margin-top:14px">Enable JavaScript to rank and filter the countries.</p></noscript>
   </section>
 
   <section>
@@ -364,13 +366,14 @@
 
     <div class="legend">
       <span><i style="background:#8fa6d6"></i> World Cup</span>
-      <span><i style="background:var(--gold)"></i> Africa Cup of Nations</span>
+      <span><i style="background:var(--gold)"></i> AFCON</span>
+      <span><i style="background:#5fd39a"></i> Club &amp; league</span>
       <span><svg class="doll" style="width:16px;height:16px;color:var(--blue)"><use href="#ic-doll"/></svg> Learn more → source</span>
     </div>
 
     <div class="timeline">
 
-      <div class="event">
+      <div class="event" data-caster="haiti">
         <div class="card flag-haiti">
           <div class="meta"><span class="year">1974</span><span class="cup wc">World Cup</span><span class="tag allegation">Post-match allegation</span></div>
           <div class="match"><svg class="flag"><use href="#f-haiti"/></svg> Haiti <span class="score">2 – 1</span> Trinidad &amp; Tobago <svg class="flag"><use href="#f-tt"/></svg> <span class="detail">· qualifying, Dec 1973</span></div>
@@ -383,7 +386,33 @@
         </div>
       </div>
 
-      <div class="event ritual">
+      <div class="event ritual" data-caster="drc">
+        <div class="card flag-drc">
+          <div class="meta"><span class="year">1974</span><span class="cup wc">World Cup</span><span class="tag ritual">Team witchdoctors</span></div>
+          <div class="match"><svg class="flag"><use href="#f-drc"/></svg> Zaire <span class="score">0 – 9</span> Yugoslavia <span class="detail">· group stage, Gelsenkirchen (Zaire = today's DR Congo)</span></div>
+          <p class="claim"><span class="lead-in">The scene</span>Zaire — the first Black African side at a World Cup — travelled to West Germany with a retinue of <b>witchdoctors</b> and lucky charms, dispatched under the eye of Mobutu's regime to guarantee glory.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>It didn't take: a <b>9–0</b> demolition by Yugoslavia, still among the heaviest defeats in World Cup history, and Mwepu Ilunga's baffling breakaway free-kick clearance. Fifty-two years later the same nation, as DR Congo, would return — and be the one <em>accused</em> of voodoo.</p>
+          <div class="card-foot">
+            <span class="verdict miss">CHARMS CARRIED, NINE GOALS CONCEDED</span>
+            <a class="learn" href="https://www.espn.com/espn/story/_/id/48365770/congo-dr-banish-fifa-world-cup-green-ghosts-52-years-ago" target="_blank" rel="noopener"><svg class="doll"><use href="#ic-doll"/></svg> Learn more</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event ritual" data-caster="zw">
+        <div class="card flag-zw">
+          <div class="meta"><span class="year">1987</span><span class="cup club">CAF Club</span><span class="tag ritual">Sangoma on the payroll</span></div>
+          <div class="match"><svg class="flag"><use href="#f-zw"/></svg> Dynamos (Zimbabwe) <span class="detail">· African Cup of Champions Clubs</span></div>
+          <p class="claim"><span class="lead-in">The scene</span>Dynamos captain <b>Memory Mucherahowa</b> later lifted the lid on juju in the Zimbabwean game: healers kept on the club payroll, bones and river pebbles buried around the pitch. Before one 1987 continental tie he watched a sangoma <b>cut players' toes</b> to rub in his "medicine."</p>
+          <p class="outcome"><span class="lead-in">What happened</span>The practice never left: decades on, rivals CAPS United and How Mine still traded juju accusations — one dressing room reportedly found strewn with lit candles arranged in an 11-man formation.</p>
+          <div class="card-foot">
+            <span class="verdict mixed">JUJU ON THE PAYROLL — A LEAGUE'S OPEN SECRET</span>
+            <a class="learn" href="https://www.ibtimes.co.uk/zimbabwe-football-legend-lifts-lid-widespread-use-witchcraft-win-matches-1621904" target="_blank" rel="noopener"><svg class="doll"><use href="#ic-doll"/></svg> Learn more</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event ritual" data-caster="civ">
         <div class="card flag-civ">
           <div class="meta"><span class="year">1992</span><span class="cup afcon">AFCON</span><span class="tag ritual">Blessing → self-curse</span></div>
           <div class="match"><svg class="flag"><use href="#f-civ"/></svg> Ivory Coast <span class="score">0 – 0 (11–10 pens)</span> Ghana <svg class="flag"><use href="#f-ghana"/></svg> <span class="detail">· AFCON final, Dakar</span></div>
@@ -396,7 +425,7 @@
         </div>
       </div>
 
-      <div class="event">
+      <div class="event" data-caster="cmr">
         <div class="card flag-cmr">
           <div class="meta"><span class="year">2002</span><span class="cup afcon">AFCON</span><span class="tag allegation">Charm on the pitch</span></div>
           <div class="match"><svg class="flag"><use href="#f-cmr"/></svg> Cameroon <span class="score">3 – 0</span> Mali <svg class="flag"><use href="#f-mali"/></svg> <span class="detail">· semifinal, Bamako</span></div>
@@ -409,7 +438,7 @@
         </div>
       </div>
 
-      <div class="event">
+      <div class="event" data-caster="sen">
         <div class="card flag-sen">
           <div class="meta"><span class="year">2002</span><span class="cup wc">World Cup</span><span class="tag allegation">Prophecy &amp; suspicion</span></div>
           <div class="match"><svg class="flag"><use href="#f-sen"/></svg> Senegal <span class="score">1 – 0</span> France <svg class="flag"><use href="#f-fra"/></svg> <span class="detail">· opening match, Seoul</span></div>
@@ -422,7 +451,7 @@
         </div>
       </div>
 
-      <div class="event ritual">
+      <div class="event ritual" data-caster="ecu">
         <div class="card flag-ecu">
           <div class="meta"><span class="year">2006</span><span class="cup wc">World Cup</span><span class="tag ritual">Sanctioned ritual</span></div>
           <div class="match"><svg class="flag"><use href="#f-ecu"/></svg> Ecuador &amp; all 12 German venues <span class="detail">· April 2006</span></div>
@@ -435,7 +464,7 @@
         </div>
       </div>
 
-      <div class="event ritual">
+      <div class="event ritual" data-caster="rsa">
         <div class="card flag-rsa">
           <div class="meta"><span class="year">2010</span><span class="cup wc">World Cup</span><span class="tag ritual">Commissioned ritual</span></div>
           <div class="match"><svg class="flag"><use href="#f-rsa"/></svg> South Africa <span class="score">2 – 1</span> France <svg class="flag"><use href="#f-fra"/></svg> <span class="detail">· hosts' final group game</span></div>
@@ -448,7 +477,7 @@
         </div>
       </div>
 
-      <div class="event">
+      <div class="event" data-caster="civ">
         <div class="card flag-civ">
           <div class="meta"><span class="year">2006 &amp; 2012</span><span class="cup afcon">AFCON</span><span class="tag allegation">The curse bites</span></div>
           <div class="match"><svg class="flag"><use href="#f-civ"/></svg> Ivory Coast lose two finals <span class="score">on penalties</span> <span class="detail">· vs Egypt <svg class="flag sm"><use href="#f-egy"/></svg> '06, vs Zambia <svg class="flag sm"><use href="#f-zam"/></svg> '12</span></div>
@@ -461,7 +490,7 @@
         </div>
       </div>
 
-      <div class="event threat">
+      <div class="event threat" data-caster="ghana">
         <div class="card flag-ghana">
           <div class="meta"><span class="year">2014</span><span class="cup wc">World Cup</span><span class="tag threat">Curse threat</span></div>
           <div class="match"><svg class="flag"><use href="#f-por"/></svg> Portugal <span class="score">2 – 1</span> Ghana <svg class="flag"><use href="#f-ghana"/></svg> <span class="detail">· group stage, Brasília</span></div>
@@ -474,7 +503,7 @@
         </div>
       </div>
 
-      <div class="event ritual">
+      <div class="event ritual" data-caster="civ">
         <div class="card flag-civ">
           <div class="meta"><span class="year">2015</span><span class="cup afcon">AFCON</span><span class="tag ritual">Debt paid, curse lifted</span></div>
           <div class="match"><svg class="flag"><use href="#f-civ"/></svg> Ivory Coast <span class="score">0 – 0 (9–8 pens)</span> Ghana <svg class="flag"><use href="#f-ghana"/></svg> <span class="detail">· AFCON final, Bata</span></div>
@@ -487,7 +516,20 @@
         </div>
       </div>
 
-      <div class="event">
+      <div class="event" data-caster="rw">
+        <div class="card flag-rw">
+          <div class="meta"><span class="year">2016</span><span class="cup league">League</span><span class="tag allegation">Charm at the goalpost</span></div>
+          <div class="match"><svg class="flag"><use href="#f-rw"/></svg> Mukura VS <span class="score">1 – 1</span> Rayon Sports <span class="detail">· Rwandan Premier League, Dec 2016</span></div>
+          <p class="claim"><span class="lead-in">The scene</span>Chasing the game, Rayon Sports midfielder <b>Moussa Camara</b> was filmed darting to the goalpost to snatch a hidden "juju" charm — igniting a touchline chase with the keeper and two yellow cards.</p>
+          <p class="outcome"><span class="lead-in">What happened</span>Camara then scored to rescue a 1–1 draw. The uproar pushed the Rwandan FA to <b>ban witchcraft outright</b>: a three-match suspension and a fine for any player, coach or club caught at it.</p>
+          <div class="card-foot">
+            <span class="verdict hit">CHARM SNATCHED, EQUALIZER SCORED — THEN A NATIONWIDE BAN</span>
+            <a class="learn" href="https://www.pastemagazine.com/soccer/a-bizarre-incident-forces-rwandan-football-authori" target="_blank" rel="noopener"><svg class="doll"><use href="#ic-doll"/></svg> Learn more</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event" data-caster="drc">
         <div class="card flag-drc">
           <div class="meta"><span class="year">2025</span><span class="cup wc">World Cup Q</span><span class="tag allegation">Post-match allegation</span></div>
           <div class="match"><svg class="flag"><use href="#f-drc"/></svg> DR Congo <span class="score">1 – 1 (4–3 pens)</span> Nigeria <svg class="flag"><use href="#f-nga"/></svg> <span class="detail">· WC26 playoff final, Rabat</span></div>
@@ -500,7 +542,7 @@
         </div>
       </div>
 
-      <div class="event threat">
+      <div class="event threat" data-caster="ghana">
         <div class="card flag-ghana">
           <div class="meta"><span class="year">2026</span><span class="cup wc">World Cup</span><span class="tag threat">Curse threat</span></div>
           <div class="match"><svg class="flag"><use href="#f-eng"/></svg> England <span class="score">0 – 0</span> Ghana <svg class="flag"><use href="#f-ghana"/></svg> <span class="detail">· Group L, Boston, June 23</span></div>
@@ -513,7 +555,7 @@
         </div>
       </div>
 
-      <div class="event threat">
+      <div class="event threat" data-caster="ghana">
         <div class="card flag-eng">
           <div class="meta"><span class="year">2026</span><span class="cup wc">World Cup</span><span class="tag threat">The un-hexing</span></div>
           <div class="match"><svg class="flag"><use href="#f-pan"/></svg> Panama <span class="score">0 – 2</span> England <svg class="flag"><use href="#f-eng"/></svg> <span class="detail">· Group L, MetLife, June 27</span></div>
@@ -526,7 +568,7 @@
         </div>
       </div>
 
-      <div class="event">
+      <div class="event" data-caster="ghana">
         <div class="card flag-arg">
           <div class="meta"><span class="year">2026</span><span class="cup wc">World Cup</span><span class="tag threat">Open prophecy</span></div>
           <div class="match"><svg class="flag"><use href="#f-arg"/></svg> Argentina <span class="detail">· prophecy issued June 29</span></div>
@@ -539,7 +581,7 @@
         </div>
       </div>
 
-      <div class="event threat">
+      <div class="event threat" data-caster="">
         <div class="card flag-eng">
           <div class="meta"><span class="year">2026</span><span class="cup wc">World Cup</span><span class="tag rules">Storylines collide</span></div>
           <div class="match"><svg class="flag"><use href="#f-eng"/></svg> England <span class="score">2 – 1</span> DR Congo <svg class="flag"><use href="#f-drc"/></svg> <span class="detail">· Round of 32, Atlanta, July 1</span></div>
@@ -557,11 +599,11 @@
 
   <section>
     <h2>The scoreboard</h2>
-    <p class="sect-sub">If voodoo is being weaponized, the accusers should worry: across both the World Cup and AFCON, no team accused of using it has ever lost the match in question.</p>
+    <p class="sect-sub">If voodoo is being weaponized, the accusers should worry: across the World Cup and AFCON, no team accused of using it has ever lost the match in question.</p>
 
     <div class="board">
       <h3>Teams accused of voodoo — result in the flagged match</h3>
-      <div class="note">Match result for the accused side, in the game the allegation was about. Includes World Cup and AFCON.</div>
+      <div class="note">Match result for the accused side, in the game the allegation was about. (International accusation cases only — self-use rituals like Zaire '74 are a separate category.)</div>
       <div class="row"><span class="who"><svg class="flag sm"><use href="#f-haiti"/></svg> Haiti '74 (WC-Q)</span><div class="bar"><div class="fill w" style="width:100%">WIN 2–1</div></div><span class="res w">W</span></div>
       <div class="row"><span class="who"><svg class="flag sm"><use href="#f-cmr"/></svg> Cameroon '02 (AFCON)</span><div class="bar"><div class="fill w" style="width:100%">WIN 3–0</div></div><span class="res w">W</span></div>
       <div class="row"><span class="who"><svg class="flag sm"><use href="#f-sen"/></svg> Senegal '02 (WC)</span><div class="bar"><div class="fill w" style="width:100%">WIN 1–0</div></div><span class="res w">W</span></div>
@@ -629,11 +671,15 @@
       </div>
       <div class="rule">
         <div class="org">CAF</div>
-        <p>After decades of pitch-side incidents — Cameroon's N'Kono handcuffed in 2002 among them — the Confederation of African Football moved to explicitly prohibit ritual manipulation during matches, framing sorcery and ceremonial substances on the field as a fair-play violation.</p>
+        <p>After decades of pitch-side incidents — Cameroon's N'Kono handcuffed in 2002 among them — the Confederation of African Football moved to explicitly prohibit ritual manipulation during matches as a fair-play violation.</p>
       </div>
       <div class="rule">
         <div class="org">Rwanda FA</div>
-        <p>Adopted explicit anti-witchcraft measures after a league player was filmed digging up an alleged charm near an opponent's goal — the incident that pushed a federation to write magic into its rulebook.</p>
+        <p>Following the 2016 goalpost-charm incident, the federation introduced a three-match ban and a fine for any player, coach or club caught using witchcraft during matches.</p>
+      </div>
+      <div class="rule">
+        <div class="org">Tanzania FF</div>
+        <p>Moved to ban the "rampant" use of juju after reports that clubs were collectively spending thousands of dollars a season on witchcraft services in the hunt for wins.</p>
       </div>
     </div>
   </section>
@@ -648,6 +694,8 @@
     <h4>Sources</h4>
     <ul>
       <li><a href="https://allbluedaze.com/2018/03/28/warner-witchcraft-and-the-1974-world-cup-whipping-boys/">All Blue Daze — Witchcraft and the 1974 World Cup (Haiti)</a></li>
+      <li><a href="https://www.espn.com/espn/story/_/id/48365770/congo-dr-banish-fifa-world-cup-green-ghosts-52-years-ago">ESPN — Congo DR and the "green ghosts" of Zaire 1974</a></li>
+      <li><a href="https://www.ibtimes.co.uk/zimbabwe-football-legend-lifts-lid-widespread-use-witchcraft-win-matches-1621904">IBTimes — Mucherahowa on juju in Zimbabwean football</a></li>
       <li><a href="https://stereotypemag.com/2018/03/14/africa-magic-and-football-ivory-coast/">StereoType Mag — Africa, magic and football: the curse of Ivory Coast</a></li>
       <li><a href="https://www.dailymaverick.co.za/article/2015-02-09-elephants-never-forget-ivory-coast-lift-the-curse-of-the-afcon-choke/">Daily Maverick — Ivory Coast lift the curse of the AFCON choke (2015)</a></li>
       <li><a href="https://www.blytheray.com/insights/juju-jars-and-witchdoctors/">BlytheRay — Juju, jars &amp; witchdoctors (Cameroon 2002, N'Kono)</a></li>
@@ -655,19 +703,17 @@
       <li><a href="https://www.vanguardngr.com/2020/06/senegal-may-have-used-witchcraft-on-us-in-2002-says-frances-emmanuel-petit/">Vanguard — Petit: Senegal "maybe used witchcraft" (2002)</a></li>
       <li><a href="https://reuters.screenocean.com/record/867340">Reuters — Shuar shaman Tzamarenda Naychapi cleanses Berlin's Olympiastadion (2006)</a></li>
       <li><a href="https://pri.org/stories/2010-06-15/south-african-muti-used-luck-world-cup">PRI/The World — South African muti at the 2010 World Cup</a></li>
-      <li><a href="https://www.vice.com/en/article/black-bags-blood-and-pungent-paste-south-african-soccers-muti-rituals/">VICE — Muti rituals in South African soccer</a></li>
+      <li><a href="https://www.pastemagazine.com/soccer/a-bizarre-incident-forces-rwandan-football-authori">Paste — Rwanda bans witchcraft after the 2016 goalpost charm</a></li>
       <li><a href="https://gulfnews.com/sport/football/world-cup/ghana-witch-doctor-behind-ronaldo-curse-claims-and-harry-kanes-goalless-night-who-is-nana-kwaku-bonsam-1.500585004">Gulf News — Who is Nana Kwaku Bonsam? (2014 &amp; 2026)</a></li>
       <li><a href="https://www.cafonline.com/fifa-world-cup/news/dr-congo-edge-nigeria-on-penalties-to-reach-inter-confederation-play-off/">CAF — DR Congo edge Nigeria on penalties (Nov 2025)</a></li>
       <li><a href="https://www.seneweb.com/en/news/Sport/2026-world-cup-playoffs-witchcraft-accusations-surface-in-dr-congo-vs-nigeria-match_n_474582.html">Seneweb — Witchcraft accusations, DR Congo vs Nigeria</a></li>
       <li><a href="https://www.aljazeera.com/sports/2026/3/31/dr-congo-beat-jamaica-in-world-cup-intercontinental-qualifying-finals">Al Jazeera — DR Congo beat Jamaica to qualify (Mar 2026)</a></li>
       <li><a href="https://www.modernghana.com/news/1505176/world-cup-2026-england-football-fans-blame-voodoo.html">Modern Ghana — England fans blame voodoo after Ghana draw</a></li>
-      <li><a href="https://www.skysports.com/football/news/11065/13554961/world-cup-2026-england-0-0-ghana-harry-kane-goes-closest-late-on-as-three-lions-frustrated-in-boston">Sky Sports — England 0–0 Ghana match report</a></li>
       <li><a href="https://wildhunt.org/2026/06/world-cup-witchcraft-update-harry-kane-officially-unhexed.html">The Wild Hunt — Harry Kane officially unhexed</a></li>
       <li><a href="https://www.espn.com/soccer/story/_/id/49190714/harry-kane-england-leading-goalscorer-world-cup-70-goals-lineker-panama">ESPN — Kane breaks England World Cup record vs Panama</a></li>
       <li><a href="https://www.goal.com/en/lists/harry-kane-curse-uri-geller-ghana-voodoo-england-world-cup-witch-doctor/blt9b42f4546379855d">Goal — Uri Geller vows to cancel the Kane curse</a></li>
       <li><a href="https://www.espn.co.uk/football/story/_/id/49236312/england-congo-dr-live-world-cup-2026-latest-updates-commentary-score-result">ESPN — England 2–1 DR Congo, Round of 32 (July 1)</a></li>
       <li><a href="https://www.beinsports.com/en-us/soccer/fifa-world-cup-2026/articles/ghana-s-witch-doctor-makes-unsettling-prediction-for-argentina-at-the-2026-world-cup-claims-the-albiceleste-will-be-eliminated-2026-06-29">beIN Sports — Witch doctor predicts Argentina's elimination</a></li>
-      <li><a href="https://blog.wego.com/witchcraft-at-the-world-cup/">Wego — Witchcraft and magic at the World Cup 2026</a></li>
     </ul>
     <p class="disclaimer">Correlation is not conjuration. This infographic reports claims and coincidences as covered in the press; no supernatural causation is endorsed. "Hit rate" reflects whether a claimed outcome occurred, not why.</p>
   </footer>
@@ -676,37 +722,78 @@
 
 <script>
 (function () {
-  var events = Array.prototype.slice.call(document.querySelectorAll('.timeline .event'));
-  var rows   = Array.prototype.slice.call(document.querySelectorAll('.vrow'));
+  var COUNTRIES = {
+    ghana: { n: 'Ghana', f: 'f-ghana' }, eng: { n: 'England', f: 'f-eng' }, civ: { n: 'Ivory Coast', f: 'f-civ' },
+    drc: { n: 'DR Congo', f: 'f-drc' }, fra: { n: 'France', f: 'f-fra' }, arg: { n: 'Argentina', f: 'f-arg' },
+    cmr: { n: 'Cameroon', f: 'f-cmr' }, ecu: { n: 'Ecuador', f: 'f-ecu' }, egy: { n: 'Egypt', f: 'f-egy' },
+    haiti: { n: 'Haiti', f: 'f-haiti' }, mali: { n: 'Mali', f: 'f-mali' }, nga: { n: 'Nigeria', f: 'f-nga' },
+    pan: { n: 'Panama', f: 'f-pan' }, por: { n: 'Portugal', f: 'f-por' }, sen: { n: 'Senegal', f: 'f-sen' },
+    rsa: { n: 'South Africa', f: 'f-rsa' }, tt: { n: 'Trinidad & Tobago', f: 'f-tt' }, zam: { n: 'Zambia', f: 'f-zam' },
+    zw: { n: 'Zimbabwe', f: 'f-zw' }, rw: { n: 'Rwanda', f: 'f-rw' }
+  };
+
+  var events = [].slice.call(document.querySelectorAll('.timeline .event'));
+  events.forEach(function (ev) {
+    // "Involved in": every country whose flag appears in the story's match line.
+    var inv = [].slice.call(ev.querySelectorAll('.match use')).map(function (u) {
+      return (u.getAttribute('href') || u.getAttribute('xlink:href') || '').replace('#f-', '');
+    });
+    ev._inv = inv.filter(function (c, i) { return c && inv.indexOf(c) === i; });
+    // "Cast the spell": only the side that wielded / commissioned / was accused of the magic.
+    ev._cast = (ev.getAttribute('data-caster') || '').split(/\s+/).filter(Boolean);
+  });
+
+  var table = document.getElementById('vtable');
   var status = document.getElementById('filterStatus');
   var allBtn = document.getElementById('allBtn');
+  var modeBtns = [].slice.call(document.querySelectorAll('.modebtn'));
+  var mode = 'inv';
   var active = null;
 
-  // Derive each story's countries from the flags shown in its match line —
-  // this keeps the league-table filter perfectly in sync with the flags.
-  function codesOf(ev) {
-    return Array.prototype.slice.call(ev.querySelectorAll('.match use')).map(function (u) {
-      var h = u.getAttribute('href') || u.getAttribute('xlink:href') || '';
-      return h.replace('#f-', '');
+  function codesFor(ev) { return mode === 'inv' ? ev._inv : ev._cast; }
+
+  function renderTable() {
+    var counts = {};
+    events.forEach(function (ev) {
+      codesFor(ev).forEach(function (code) { counts[code] = (counts[code] || 0) + 1; });
+    });
+    var list = Object.keys(counts).map(function (code) { return { code: code, n: counts[code] }; });
+    var max = list.reduce(function (m, x) { return Math.max(m, x.n); }, 1);
+    list.sort(function (a, b) { return b.n - a.n || COUNTRIES[a.code].n.localeCompare(COUNTRIES[b.code].n); });
+
+    table.innerHTML = list.map(function (x) {
+      var meta = COUNTRIES[x.code];
+      return '<button class="vrow' + (x.code === active ? ' active' : '') + '" data-code="' + x.code + '" type="button">' +
+        '<svg class="vflag"><use href="#' + meta.f + '"/></svg>' +
+        '<span class="vname">' + meta.n + '</span>' +
+        '<span class="vbar"><i style="width:' + (x.n / max * 100) + '%"></i></span>' +
+        '<span class="vcount">' + x.n + '</span></button>';
+    }).join('');
+
+    [].slice.call(table.querySelectorAll('.vrow')).forEach(function (r) {
+      r.addEventListener('click', function () {
+        var code = r.getAttribute('data-code');
+        apply(active === code ? null : code);
+      });
     });
   }
-  var evCodes = events.map(codesOf);
 
   function apply(code) {
     active = code;
-    events.forEach(function (ev, i) {
-      ev.style.display = (!code || evCodes[i].indexOf(code) !== -1) ? '' : 'none';
+    events.forEach(function (ev) {
+      ev.style.display = (!code || codesFor(ev).indexOf(code) !== -1) ? '' : 'none';
     });
-    rows.forEach(function (r) { r.classList.toggle('active', r.getAttribute('data-code') === code); });
+    [].slice.call(table.querySelectorAll('.vrow')).forEach(function (r) {
+      r.classList.toggle('active', r.getAttribute('data-code') === code);
+    });
     allBtn.classList.toggle('active', !code);
 
     if (code) {
-      var row = rows.filter(function (r) { return r.getAttribute('data-code') === code; })[0];
-      var name = row ? row.getAttribute('data-name') : code;
       var n = 0;
-      evCodes.forEach(function (c) { if (c.indexOf(code) !== -1) n++; });
-      status.innerHTML = 'Showing <b>' + name + '</b> · ' + n + ' ' + (n === 1 ? 'story' : 'stories') +
-        ' <button type="button" id="clearF">✕ clear</button>';
+      events.forEach(function (ev) { if (codesFor(ev).indexOf(code) !== -1) n++; });
+      var verb = (mode === 'inv') ? 'appears in' : 'cast the spell in';
+      status.innerHTML = 'Showing <b>' + COUNTRIES[code].n + '</b> — ' + verb + ' ' + n + ' ' +
+        (n === 1 ? 'story' : 'stories') + ' <button type="button" id="clearF">✕ clear</button>';
       status.style.display = '';
       document.getElementById('clearF').addEventListener('click', function () { apply(null); });
     } else {
@@ -715,14 +802,23 @@
     }
   }
 
-  rows.forEach(function (r) {
-    r.addEventListener('click', function () {
-      var c = r.getAttribute('data-code');
-      apply(active === c ? null : c);
-    });
+  function setMode(m) {
+    mode = m;
+    modeBtns.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-mode') === m); });
+    document.getElementById('modeHint').textContent = (m === 'inv')
+      ? 'Involved in — every story a country’s flag turns up in, on the pitch or off it.'
+      : 'Cast the spell — only the side that wielded, commissioned or was accused of the magic (targets and opponents drop out).';
+    active = null;
+    renderTable();
+    apply(null);
+  }
+
+  modeBtns.forEach(function (b) {
+    b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); });
   });
   allBtn.addEventListener('click', function () { apply(null); });
-  apply(null);
+
+  setMode('inv');
 })();
 </script>
 
